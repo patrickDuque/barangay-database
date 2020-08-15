@@ -1,0 +1,22 @@
+.InputComponent {
+  display: flex;
+  justify-content: center;
+
+  label {
+    color: $theme-color;
+    font-size: 2rem;
+    width: 200px;
+  }
+
+  input {
+    padding: 0 10px;
+    outline: none;
+    border: 3px solid #090d28;
+    width: 400px;
+    font-family: inherit;
+    box-sizing: border-box;
+    border-radius: 30px;
+    font-size: 1.5rem;
+    color: #090d28;
+  }
+}

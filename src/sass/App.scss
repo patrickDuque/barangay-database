@@ -1,7 +1,9 @@
+@import './root.scss';
 @import './NavItems.scss';
 @import './MainMenu.scss';
 @import './SignIn.scss';
-@import './SignUp.scss';
+@import './Input.scss';
+@import './Button.scss';
 
 .App {
   box-sizing: border-box;

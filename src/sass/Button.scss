@@ -1,0 +1,18 @@
+.ButtonComponent {
+  background-color: white;
+  border: none;
+  color: #181c3a;
+  outline: none;
+  cursor: pointer;
+  font: inherit;
+  padding: 10px;
+  margin: 10px;
+  font-weight: bold;
+  border-radius: 20px;
+  width: 30%;
+  transition: .3s ease-out;
+
+  &:hover {
+    background-color: $theme-color;
+  }
+}

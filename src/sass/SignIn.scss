@@ -1,5 +1,12 @@
 .SignInPage {
-	border-radius: 30px;
+  border-radius: 30px;
   background-color: #181c3a;
   height: 88.7vh;
+  box-sizing: border-box;
+  text-align: center;
+  width: 100%;
+
+  .SignInIcon {
+    color: $theme-color;
+  }
 }
