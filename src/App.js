@@ -19,7 +19,7 @@ function App() {
       <div className='uk-width-expand'>
         <Switch>
           <Route path='/signin' component={SignIn} />
-          <Route path='/' component={MainMenu} />
+          <Route path='/' exact component={MainMenu} />
         </Switch>
       </div>
     </div>

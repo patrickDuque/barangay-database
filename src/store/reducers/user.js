@@ -16,6 +16,10 @@ const reducer = (state = initialState, action) => {
       newState.token = action.token;
       newState.error = null;
       newState.loading = false;
+      break;
+    case actionTypes.LOGOUT:
+      newState.user = null;
+      newState.token = null;
   }
   return newState;
 };
