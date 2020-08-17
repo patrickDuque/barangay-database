@@ -6,12 +6,19 @@
 @import './Button.scss';
 @import './Table.scss';
 @import './TableItems.scss';
+@import './Select.scss';
 @import './Dropdown.scss';
 @import './Backdrop.scss';
 @import './Modal.scss';
 @import './AddProfile.scss';
+@import './AddAddress.scss';
+@import './AddOtherDetails.scss';
 
 .App {
   box-sizing: border-box;
   height: 100vh;
+
+  div {
+    box-sizing: border-box;
+  }
 }

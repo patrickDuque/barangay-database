@@ -1,76 +1,50 @@
 import React, { useRef, useCallback, useState } from 'react';
-import Modal from '../components/UI/Modal/Modal';
+import history from '../helpers/history';
 import Input from '../components/UI/Input';
-import Webcam from 'react-webcam';
-
-const videoConstraints = {
-  width      : 1280,
-  height     : 720,
-  facingMode : 'user'
-};
+import Button from '../components/UI/Button';
+import Select from '../components/UI/Select';
 
 export default () => {
-  const [ showCamera, setShowCamera ] = useState(false);
-  const [ imgSrc, setImgSrc ] = useState(null);
-  const [ name, setName ] = useState('');
-  const webcamRef = useRef(null);
+  const [ fname, setFName ] = useState('');
+  const [ mname, setMName ] = useState('');
+  const [ lname, setLName ] = useState('');
+  const [ birthday, setBirthday ] = useState('');
+  const [ sex, setSex ] = useState('');
 
-  const capture = useCallback(
-    () => {
-      const imageSrc = webcamRef.current.getScreenshot();
-      setImgSrc(imageSrc);
-    },
-    [ webcamRef ]
-  );
-
-  const closeCameraHandler = () => {
-    setShowCamera(false);
-  };
-
-  const showCameraHandler = () => {
-    setShowCamera(true);
+  const nextSectionHandler = () => {
+    const details = {
+      name     : `${lname.toUpperCase()}, ${fname} ${mname}`,
+      birthday : new Date(birthday).toDateString().split(' ').filter((_, i) => i > 0).join(' '),
+      sex      : sex
+    };
+    console.log(details);
+    history.push('/add-profile/address');
   };
 
   return (
-    <div className='AddProfileComponent uk-position-relative'>
-      <div className='uk-grid uk-position-center'>
-        {imgSrc ? (
-          <img className='AddProfileImage uk-padding-remove' src={imgSrc} alt='dp' />
-        ) : (
-          <div className='AddProfileImage uk-position-relative'>
-            <button className='uk-position-center ImageCapture' onClick={showCameraHandler}>
-              Open camera
-            </button>
-          </div>
-        )}
-        <Modal show={showCamera} removeModal={closeCameraHandler}>
-          {showCamera && (
-            <React.Fragment>
-              <Webcam
-                audio={false}
-                height={360}
-                ref={webcamRef}
-                screenshotFormat='image/jpeg'
-                width={450}
-                videoConstraints={videoConstraints}
-                mirrored={true}
-              />
-              <div className='uk-text-center uk-margin-small-top'>
-                <button className='ImageCapture' onClick={capture}>
-                  Capture photo
-                </button>
-              </div>
-            </React.Fragment>
-          )}
-        </Modal>
-        <div className='uk-width-expand'>
-          <Input type='text' id='fname' label='First Name' />
-          <Input type='text' id='mname' label='Middle Name' />
-          <Input type='text' id='lname' label='Last Name' />
-
-          <Input type='text' id='address' label='Address' />
-          <Input type='date' id='birthday' label='Birthday' />
-          <Input type='number' id='contact-number' label='Contact' />
+    <div className='AddProfilePage uk-position-relative'>
+      <div className='AddProfile uk-padding uk-position-center'>
+        <div className='uk-padding-remove uk-margin-medium-top'>
+          <Input type='text' id='fname' label='First Name' value={fname} onChange={e => setFName(e.target.value)} />
+          <Input type='text' id='mname' label='Middle Name' value={mname} onChange={e => setMName(e.target.value)} />
+          <Input type='text' id='lname' label='Last Name' value={lname} onChange={e => setLName(e.target.value)} />
+          <Input
+            type='date'
+            id='birthday'
+            label='Birthday'
+            value={birthday}
+            onChange={e => setBirthday(e.target.value)}
+          />
+          <Select
+            label='Sex'
+            id='sex'
+            options={[ 'Male', 'Female' ]}
+            value={sex}
+            onChange={e => setSex(e.target.value)}
+          />
+        </div>
+        <div className='uk-text-center'>
+          <Button onClick={nextSectionHandler}>Next</Button>
         </div>
       </div>
     </div>

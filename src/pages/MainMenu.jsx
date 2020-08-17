@@ -91,4 +91,3 @@ export default ErrorHandler(props => {
   );
 }, axios);
 
-// new Date().toDateString().split(' ').filter((_, i) => i > 0).join(' ')

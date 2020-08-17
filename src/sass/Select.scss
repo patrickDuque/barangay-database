@@ -1,0 +1,29 @@
+.SelectComponent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  label {
+    text-align: center;
+    color: white;
+    font-size: 1.5rem;
+    width: 200px;
+  }
+
+  select {
+    padding: 0 10px;
+    outline: none;
+    border: 3px solid #090d28;
+    width: 300px;
+    font-family: inherit;
+    box-sizing: border-box;
+    border-radius: 30px;
+    font-size: 1.5rem;
+    color: #090d28;
+    appearance: window;
+
+    option {
+      border-radius: 30px;
+    }
+  }
+}

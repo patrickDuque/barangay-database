@@ -1,12 +1,13 @@
-.AddProfilePage {
+.AddAddressPage {
   border-radius: 30px;
   background-color: #181c3a;
   height: 88.7vh;
   border: 1px solid #eee;
   box-sizing: border-box;
 
-  .AddProfile {
-    border-radius: 30px;
+  .AddAddress {
+    box-sizing: border-box;
     border: 2px solid white;
+    border-radius: 30px;
   }
 }
