@@ -31,6 +31,7 @@ export default React.memo(props => {
       <BsThreeDots onClick={props.openDropdown} />
       {props.show && (
         <ul className='DropdownList'>
+          <li>View</li>
           <li onClick={editProfile}>Edit</li>
           <li>Delete</li>
         </ul>

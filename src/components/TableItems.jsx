@@ -17,8 +17,16 @@ export default props => {
       <td>{props.name}</td>
       <td>{props.address}</td>
       <td>{props.contactNum}</td>
+      <td>{props.birthday}</td>
+      <td>{props.age}</td>
+      <td>{props.sex}</td>
       <td className='TableItemMenu'>
-        <Dropdown userId={props.id} show={show} closeDropdown={handleRemoveDropDown} openDropdown={handleToggleDropDown} />
+        <Dropdown
+          userId={props.id}
+          show={show}
+          closeDropdown={handleRemoveDropDown}
+          openDropdown={handleToggleDropDown}
+        />
       </td>
     </tr>
   );
