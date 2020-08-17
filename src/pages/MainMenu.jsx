@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import axios from '../api/axios';
+
 import Table from '../components/Table';
 import Input from '../components/UI/Input';
+import ErrorHandler from '../hoc/ErrorHandler';
 import Modal from '../components/UI/Modal/Modal';
 
-export default props => {
+export default ErrorHandler(props => {
   const [ profiles, setProfiles ] = useState([
     {
       name          : 'DUQUE, Patrick Jason SAN JOSE',
@@ -86,6 +89,6 @@ export default props => {
       {/* <Modal show={show} removeModal={() => setShow(false)} /> */}
     </div>
   );
-};
+}, axios);
 
 // new Date().toDateString().split(' ').filter((_, i) => i > 0).join(' ')

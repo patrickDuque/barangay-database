@@ -19,30 +19,32 @@ export default () => {
   return (
     <div className='SignInPage uk-position-relative'>
       <div className='uk-position-center'>
-        <div className='uk-margin-bottom uk-margin-xlarge-left SignInIcon'>
+        <div className='uk-margin-bottom SignInIcon'>
           <IconContext.Provider value={{ size: '4em' }}>
             <FaUserAlt />
           </IconContext.Provider>
         </div>
-        <form onSubmit={handleSignIn}>
-          <Input
-            onChange={e => setUsername(e.target.value)}
-            value={username}
-            type='text'
-            id='adminusername'
-            label='Username'
-          />
-          <Input
-            onChange={e => setPassword(e.target.value)}
-            value={password}
-            type='password'
-            id='adminpassword'
-            label='Password'
-          />
-          <div className='uk-text-right'>
-            <Button type='submit'>Sign In</Button>
-          </div>
-        </form>
+        <div className='SignInForm uk-padding-large'>
+          <form onSubmit={handleSignIn}>
+            <Input
+              onChange={e => setUsername(e.target.value)}
+              value={username}
+              type='text'
+              id='adminusername'
+              label='Username'
+            />
+            <Input
+              onChange={e => setPassword(e.target.value)}
+              value={password}
+              type='password'
+              id='adminpassword'
+              label='Password'
+            />
+            <div className='uk-text-right'>
+              <Button type='submit'>Sign In</Button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

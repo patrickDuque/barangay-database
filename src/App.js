@@ -8,6 +8,7 @@ import './sass/App.scss';
 //Components
 import Navbar from './components/UI/NavItems';
 import MainMenu from './pages/MainMenu';
+import AddProfile from './pages/AddProfile';
 import SignIn from './pages/SignIn';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
       <div className='uk-width-expand'>
         <Switch>
           <Route path='/signin' component={SignIn} />
+          <Route path='/add-profile' component={AddProfile} />
           <Route path='/' exact component={MainMenu} />
         </Switch>
       </div>

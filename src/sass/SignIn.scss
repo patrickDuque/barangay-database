@@ -9,4 +9,10 @@
   .SignInIcon {
     color: $theme-color;
   }
+
+  .SignInForm {
+    border: 2px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 20px;
+  }
 }

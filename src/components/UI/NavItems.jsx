@@ -41,7 +41,7 @@ export default props => {
             </NavLink>
           </li>
           <li className='NavItem'>
-            <NavLink to='/add'>
+            <NavLink to='/add-profile'>
               Add Profile <FaUserPlus />
             </NavLink>
           </li>
