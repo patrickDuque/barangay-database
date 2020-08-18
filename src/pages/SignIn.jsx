@@ -1,24 +1,29 @@
 import React, { useState } from 'react';
 import { FaUserAlt } from 'react-icons/fa';
 import { IconContext } from 'react-icons';
-import history from '../helpers/history';
+import { useDispatch, useSelector } from 'react-redux';
+import { signIn } from '../store/actions/userActions';
 
 import Input from '../components/UI/Input';
 import Button from '../components/UI/Button';
+import Spinner from '../components/UI/Spinner';
 
 export default () => {
+  const dispatch = useDispatch();
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
+  const loading = useSelector(state => state.user.loading);
 
   const handleSignIn = e => {
     e.preventDefault();
-    console.log({ username, password });
-    history.push('/');
+    dispatch(signIn({ username, password }));
   };
 
-  return (
-    <div className='SignInPage uk-position-relative'>
-      <div className='uk-position-center'>
+  let form = <Spinner />;
+
+  if (!loading) {
+    form = (
+      <React.Fragment>
         <div className='uk-margin-bottom SignInIcon'>
           <IconContext.Provider value={{ size: '4em' }}>
             <FaUserAlt />
@@ -45,7 +50,13 @@ export default () => {
             </div>
           </form>
         </div>
-      </div>
+      </React.Fragment>
+    );
+  }
+
+  return (
+    <div className='SignInPage uk-position-relative'>
+      <div className='uk-position-center'>{form}</div>
     </div>
   );
 };

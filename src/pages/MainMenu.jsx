@@ -5,6 +5,7 @@ import { getProfiles } from '../store/actions/profileActions';
 
 import Table from '../components/Table';
 import Input from '../components/UI/Input';
+import Spinner from '../components/UI/Spinner';
 import ErrorHandler from '../hoc/ErrorHandler';
 
 export default ErrorHandler(props => {
@@ -12,6 +13,7 @@ export default ErrorHandler(props => {
 
   const [ searchbar, setSearchBar ] = useState('');
   const profiles = useSelector(state => state.profile.profiles);
+  const loading = useSelector(state => state.profile.loading);
 
   useEffect(
     () => {
@@ -36,19 +38,25 @@ export default ErrorHandler(props => {
     .filter(profile => profile.name.toLowerCase().includes(searchbar.toLowerCase()))
     .sort(sortName);
 
-  return (
-    <div className='MainMenuPage'>
-      <div className='uk-flex uk-flex-between uk-padding'>
-        <Input
-          id='searchbar'
-          label='Search'
-          type='text'
-          value={searchbar}
-          onChange={e => setSearchBar(e.target.value)}
-        />
-        <h3 className='uk-margin-remove uk-text-right'>Count: {filteredProfile.length}</h3>
-      </div>
-      <Table profiles={filteredProfile} />
-    </div>
-  );
+  let mainPage = <Spinner />;
+
+  if (!loading) {
+    mainPage = (
+      <React.Fragment>
+        <div className='uk-flex uk-flex-between uk-padding'>
+          <Input
+            id='searchbar'
+            label='Search'
+            type='text'
+            value={searchbar}
+            onChange={e => setSearchBar(e.target.value)}
+          />
+          <h3 className='uk-margin-remove uk-text-right'>Count: {filteredProfile.length}</h3>
+        </div>
+        <Table profiles={filteredProfile} />
+      </React.Fragment>
+    );
+  }
+
+  return <div className='MainMenuPage'>{mainPage}</div>;
 }, axios);

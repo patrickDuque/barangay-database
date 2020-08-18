@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Logo from '../../assets/images/logo.jfif';
 import { TiThMenu } from 'react-icons/ti';
 import { FaUserPlus, FaUser } from 'react-icons/fa';
 import { GoSignIn, GoSignOut } from 'react-icons/go';
 import { IconContext } from 'react-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../store/actions/userActions';
 
 export default props => {
-  const [ user, setUser ] = useState(true);
+  const dispatch = useDispatch();
 
-  const toggleUser = () => {
-    setUser(!user);
+  const user = useSelector(state => state.user.user);
+
+  const logoutUser = () => {
+    dispatch(logout());
   };
 
   let auth = (
@@ -48,7 +52,7 @@ export default props => {
         </div>
         <div>
           <li className='NavItem'>
-            <NavLink to='/signin' onClick={toggleUser}>
+            <NavLink to='/signin' onClick={logoutUser}>
               <IconContext.Provider value={{ size: '2em' }}>
                 <GoSignOut />
               </IconContext.Provider>

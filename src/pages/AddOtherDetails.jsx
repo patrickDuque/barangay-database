@@ -6,6 +6,7 @@ import FormData from 'form-data';
 import Input from '../components/UI/Input';
 import Button from '../components/UI/Button';
 import Select from '../components/UI/Select';
+import Spinner from '../components/UI/Spinner';
 import Modal from '../components/UI/Modal/Modal';
 import Webcam from 'react-webcam';
 
@@ -31,6 +32,7 @@ export default () => {
   const age = useSelector(state => state.profile.age);
   const birthday = useSelector(state => state.profile.birthday);
   const sex = useSelector(state => state.profile.sex);
+  const loading = useSelector(state => state.profile.loading);
 
   const webcamRef = useRef(null);
 
@@ -60,7 +62,7 @@ export default () => {
         let form = new FormData();
         form.append('picture', file, `${name}.jpeg`);
         form.append('sector', sector);
-        form.append('contactNumber', contactNumber === '' ? contactNumber : 'No contact number');
+        form.append('contactNumber', contactNumber);
         form.append('occupation', occupation === '' ? occupation : 'None');
         form.append('birthplace', birthplace === '' ? birthplace : 'None');
         form.append('name', name);
@@ -76,96 +78,102 @@ export default () => {
     }
   };
 
-  return (
-    <div className='AddOtherDetailsPage uk-padding'>
-      {imgSrc ? (
-        <div className='AddProfileImage uk-margin-auto'>
-          <img className='uk-padding-remove' src={imgSrc} alt='dp' />
-        </div>
-      ) : (
-        <div className='AddProfileImage uk-position-relative uk-margin-auto'>
-          <button className='uk-position-center ImageCapture' onClick={showCameraHandler}>
-            Open camera
-          </button>
-        </div>
-      )}
-      <Modal show={showCamera} removeModal={closeCameraHandler}>
-        {showCamera && (
-          <React.Fragment>
-            <Webcam
-              audio={false}
-              height={360}
-              ref={webcamRef}
-              screenshotFormat='image/jpeg'
-              width={450}
-              videoConstraints={videoConstraints}
-              mirrored={true}
-            />
-            <div className='uk-text-center uk-margin-small-top'>
-              <button className='ImageCapture' onClick={capture}>
-                Capture photo
-              </button>
-            </div>
-          </React.Fragment>
+  let otherDetails = <Spinner />;
+
+  if (!loading) {
+    otherDetails = (
+      <React.Fragment>
+        {imgSrc ? (
+          <div className='AddProfileImage uk-margin-auto'>
+            <img className='uk-padding-remove' src={imgSrc} alt='dp' />
+          </div>
+        ) : (
+          <div className='AddProfileImage uk-position-relative uk-margin-auto'>
+            <button className='uk-position-center ImageCapture' onClick={showCameraHandler}>
+              Open camera
+            </button>
+          </div>
         )}
-      </Modal>
-      <div className='uk-grid uk-margin-medium-bottom uk-margin-medium-top'>
-        <div className='uk-width-auto'>
-          <Input
-            type='text'
-            id='contactNumber'
-            label='Contact Number'
-            value={contactNumber}
-            onChange={e => setContactNumber(e.target.value)}
-          />
-          <Input
-            type='text'
-            id='occupation'
-            label='Occupation'
-            value={occupation}
-            onChange={e => setOccupation(e.target.value)}
-          />
-          <Input
-            type='text'
-            id='transfer'
-            label='Year Tranferred'
-            value={transfer}
-            onChange={e => setTransfer(e.target.value)}
-          />
+        <Modal show={showCamera} removeModal={closeCameraHandler}>
+          {showCamera && (
+            <React.Fragment>
+              <Webcam
+                audio={false}
+                height={360}
+                ref={webcamRef}
+                screenshotFormat='image/jpeg'
+                width={450}
+                videoConstraints={videoConstraints}
+                mirrored={true}
+              />
+              <div className='uk-text-center uk-margin-small-top'>
+                <button className='ImageCapture' onClick={capture}>
+                  Capture photo
+                </button>
+              </div>
+            </React.Fragment>
+          )}
+        </Modal>
+        <div className='uk-grid uk-margin-medium-bottom uk-margin-medium-top'>
+          <div className='uk-width-auto'>
+            <Input
+              type='text'
+              id='contactNumber'
+              label='Contact Number'
+              value={contactNumber}
+              onChange={e => setContactNumber(e.target.value)}
+            />
+            <Input
+              type='text'
+              id='occupation'
+              label='Occupation'
+              value={occupation}
+              onChange={e => setOccupation(e.target.value)}
+            />
+            <Input
+              type='text'
+              id='transfer'
+              label='Year Tranferred'
+              value={transfer}
+              onChange={e => setTransfer(e.target.value)}
+            />
+          </div>
+          <div className='uk-width-auto'>
+            <Input
+              type='text'
+              id='birthplace'
+              label='Place of Birth'
+              value={birthplace}
+              onChange={e => setBirthplace(e.target.value)}
+            />
+            <Select
+              label='Sector'
+              id='sector'
+              options={[
+                'None',
+                'Senior Citizen',
+                'PWD',
+                'Solo Parent',
+                'OFW',
+                'Minor',
+                'Farmer',
+                'TODA',
+                'JODA',
+                'UV',
+                'BUS'
+              ]}
+              value={sector}
+              onChange={e => setSector(e.target.value)}
+            />
+          </div>
         </div>
-        <div className='uk-width-auto'>
-          <Input
-            type='text'
-            id='birthplace'
-            label='Place of Birth'
-            value={birthplace}
-            onChange={e => setBirthplace(e.target.value)}
-          />
-          <Select
-            label='Sector'
-            id='sector'
-            options={[
-              'None',
-              'Senior Citizen',
-              'PWD',
-              'Solo Parent',
-              'OFW',
-              'Minor',
-              'Farmer',
-              'TODA',
-              'JODA',
-              'UV',
-              'BUS'
-            ]}
-            value={sector}
-            onChange={e => setSector(e.target.value)}
-          />
+        <div className='uk-text-center'>
+          <Button to='/add-profile/address'>Previous</Button>
+          <Button onClick={submitProfileHandler}>Submit</Button>
         </div>
-      </div>
-      <div className='uk-text-center'>
-        <Button to='/add-profile/address'>Previous</Button>
-        <Button onClick={submitProfileHandler}>Submit</Button>
-      </div>
-    </div>
-  );
+      </React.Fragment>
+    );
+  }
+
+  return <div className='AddOtherDetailsPage uk-padding'>{otherDetails}</div>;
 };
