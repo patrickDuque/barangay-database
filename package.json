@@ -7,7 +7,7 @@
   "build": {
     "appId": "barangay.db.fe",
     "win": {
-      "iconUrl": "public/barangay-logo.jpeg"
+      "icon": "build/icon.png"
     }
   },
   "dependencies": {
