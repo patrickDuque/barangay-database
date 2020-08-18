@@ -70,9 +70,13 @@ export default ErrorHandler(props => {
     return comparison;
   };
 
+  const filteredProfile = profiles
+    .filter(profile => profile.name.toLowerCase().includes(searchbar.toLowerCase()))
+    .sort(sortName);
+
   return (
     <div className='MainMenuPage'>
-      <div className='uk-margin-top'>
+      <div className='uk-flex uk-flex-between uk-padding'>
         <Input
           id='searchbar'
           label='Search'
@@ -80,14 +84,12 @@ export default ErrorHandler(props => {
           value={searchbar}
           onChange={e => setSearchBar(e.target.value)}
         />
+        <h3 className='uk-margin-remove uk-text-right' style={{ color: 'white' }}>
+          Count: {filteredProfile.length}
+        </h3>
       </div>
-      <Table
-        profiles={profiles
-          .filter(profile => profile.name.toLowerCase().includes(searchbar.toLowerCase()))
-          .sort(sortName)}
-      />
+      <Table profiles={filteredProfile} />
       {/* <Modal show={show} removeModal={() => setShow(false)} /> */}
     </div>
   );
 }, axios);
-

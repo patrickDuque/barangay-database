@@ -16,7 +16,7 @@ export default props => {
   ));
 
   return (
-    <table className='TableComponent uk-table uk-table-responsive'>
+    <table className='TableComponent uk-table uk-table-responsive uk-margin-remove-top'>
       <thead>
         <tr>
           <th>Name</th>

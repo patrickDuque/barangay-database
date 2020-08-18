@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import Logo from '../../assets/images/logo.png';
+import Logo from '../../assets/images/logo.jfif';
 import { TiThMenu } from 'react-icons/ti';
 import { FaUserPlus, FaUser } from 'react-icons/fa';
 import { GoSignIn, GoSignOut } from 'react-icons/go';

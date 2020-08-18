@@ -14,10 +14,16 @@
 
   &:hover {
     background-color: $theme-color;
+    color: white;
   }
 
   a {
     text-decoration: none;
     color: #181c3a;
+    transition: .3s ease-out;
+
+    &:hover {
+      color: white;
+    }
   }
 }

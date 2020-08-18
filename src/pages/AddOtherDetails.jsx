@@ -1,4 +1,7 @@
 import React, { useState, useRef, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { submitProfile } from '../store/actions/profileActions';
+import FormData from 'form-data';
 
 import Input from '../components/UI/Input';
 import Button from '../components/UI/Button';
@@ -13,12 +16,21 @@ const videoConstraints = {
 };
 
 export default () => {
+  const dispatch = useDispatch();
+
   const [ showCamera, setShowCamera ] = useState(false);
   const [ imgSrc, setImgSrc ] = useState(null);
   const [ contactNumber, setContactNumber ] = useState('');
   const [ birthplace, setBirthplace ] = useState('');
   const [ occupation, setOccupation ] = useState('');
-  const [ sector, setSector ] = useState('');
+  const [ transfer, setTransfer ] = useState('');
+  const [ sector, setSector ] = useState('None');
+
+  const name = useSelector(state => state.profile.name);
+  const address = useSelector(state => state.profile.address);
+  const age = useSelector(state => state.profile.age);
+  const birthday = useSelector(state => state.profile.birthday);
+  const sex = useSelector(state => state.profile.sex);
 
   const webcamRef = useRef(null);
 
@@ -39,11 +51,29 @@ export default () => {
     setShowCamera(true);
   };
 
-  const submitProfileHandler = () => {
-    const details = {
-      picture : new File([ imgSrc ], 'profile-image.jpeg', { type: 'image/jpeg' })
-    };
-    console.log(details);
+  const submitProfileHandler = async () => {
+    try {
+      fetch(imgSrc).then(res => res.blob()).then(img => {
+        const file = new File([ img ], 'profile.jpeg', {
+          type : 'image/jpeg'
+        });
+        let form = new FormData();
+        form.append('picture', file, `${name}.jpeg`);
+        form.append('sector', sector);
+        form.append('contactNumber', contactNumber ? contactNumber : 'None');
+        form.append('occupation', occupation ? occupation : 'None');
+        form.append('birthplace', birthplace ? birthplace : 'None');
+        form.append('name', name);
+        form.append('address', address);
+        form.append('age', age);
+        form.append('birthday', birthday);
+        form.append('sex', sex);
+        form.append('transfer', transfer);
+        dispatch(submitProfile(form));
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -94,6 +124,13 @@ export default () => {
             label='Occupation'
             value={occupation}
             onChange={e => setOccupation(e.target.value)}
+          />
+          <Input
+            type='text'
+            id='transfer'
+            label='Year Tranferred'
+            value={transfer}
+            onChange={e => setTransfer(e.target.value)}
           />
         </div>
         <div className='uk-width-auto'>

@@ -1,23 +1,40 @@
-import React, { useRef, useCallback, useState } from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addProfile } from '../store/actions/profileActions';
+
 import history from '../helpers/history';
 import Input from '../components/UI/Input';
 import Button from '../components/UI/Button';
 import Select from '../components/UI/Select';
 
 export default () => {
+  const dispatch = useDispatch();
+
   const [ fname, setFName ] = useState('');
   const [ mname, setMName ] = useState('');
   const [ lname, setLName ] = useState('');
   const [ birthday, setBirthday ] = useState('');
-  const [ sex, setSex ] = useState('');
+  const [ sex, setSex ] = useState('Male');
+
+  const getAge = bday => {
+    var today = new Date();
+    var birthDate = new Date(bday);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age = age - 1;
+    }
+    return age;
+  };
 
   const nextSectionHandler = () => {
     const details = {
-      name     : `${lname.toUpperCase()}, ${fname} ${mname}`,
       birthday : new Date(birthday).toDateString().split(' ').filter((_, i) => i > 0).join(' '),
-      sex      : sex
+      age      : getAge(birthday),
+      sex      : sex,
+      name     : `${lname.toUpperCase()}, ${fname} ${mname.toUpperCase()}`
     };
-    console.log(details);
+    dispatch(addProfile(details));
     history.push('/add-profile/address');
   };
 
