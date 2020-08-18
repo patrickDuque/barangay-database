@@ -12,7 +12,8 @@ const initialState = {
   contactNumber : null,
   birthplace    : null,
   error         : null,
-  loading       : false
+  loading       : false,
+  profiles      : []
 };
 
 const reducer = (state = initialState, action) => {
@@ -51,6 +52,18 @@ const reducer = (state = initialState, action) => {
       newState.birthplace = null;
       newState.error = null;
       newState.loading = false;
+      break;
+    case actionTypes.GET_PROFILES_START:
+      newState.loading = true;
+      break;
+    case actionTypes.GET_PROFILES_SUCCESS:
+      newState.profiles = action.profiles;
+      newState.loading = false;
+      newState.error = false;
+      break;
+    case actionTypes.GET_PROFILES_FAIL:
+      newState.loading = false;
+      newState.error = action.error;
       break;
   }
   return newState;

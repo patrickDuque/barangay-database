@@ -10,8 +10,8 @@ export default props => {
       birthday={profile.birthday}
       age={profile.age}
       sex={profile.sex}
-      key={profile.id}
-      id={profile.id}
+      key={profile._id}
+      id={profile._id}
     />
   ));
 

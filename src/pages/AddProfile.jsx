@@ -29,7 +29,7 @@ export default () => {
 
   const nextSectionHandler = () => {
     const details = {
-      birthday : new Date(birthday).toDateString().split(' ').filter((_, i) => i > 0).join(' '),
+      birthday : new Date(birthday).toDateString().split(' ').filter((_, i) => i > 0).join(', '),
       age      : getAge(birthday),
       sex      : sex,
       name     : `${lname.toUpperCase()}, ${fname} ${mname.toUpperCase()}`

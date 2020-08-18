@@ -17,7 +17,7 @@ export default () => {
 
   const nextSectionHandler = () => {
     const details = {
-      address : `${num} ${street}, ${subdivision}, ${phase}`
+      address : `${num} ${street}, ${subdivision}, Phase ${phase}`
     };
     dispatch(addAddress(details.address));
     history.push('/add-profile/address/other-details');

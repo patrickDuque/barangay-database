@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Dropdown from './UI/Dropdown';
+import { deleteProfile } from '../store/actions/profileActions';
 
 export default props => {
+  const dispatch = useDispatch();
   const [ show, setShow ] = useState(false);
 
   const handleToggleDropDown = () => {
@@ -10,6 +13,10 @@ export default props => {
 
   const handleRemoveDropDown = () => {
     setShow(false);
+  };
+
+  const deleteProfileInfo = id => {
+    dispatch(deleteProfile(id));
   };
 
   return (
@@ -26,6 +33,7 @@ export default props => {
           show={show}
           closeDropdown={handleRemoveDropDown}
           openDropdown={handleToggleDropDown}
+          delete={() => deleteProfileInfo(props.id)}
         />
       </td>
     </tr>

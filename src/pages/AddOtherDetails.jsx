@@ -60,9 +60,9 @@ export default () => {
         let form = new FormData();
         form.append('picture', file, `${name}.jpeg`);
         form.append('sector', sector);
-        form.append('contactNumber', contactNumber ? contactNumber : 'None');
-        form.append('occupation', occupation ? occupation : 'None');
-        form.append('birthplace', birthplace ? birthplace : 'None');
+        form.append('contactNumber', contactNumber === '' ? contactNumber : 'No contact number');
+        form.append('occupation', occupation === '' ? occupation : 'None');
+        form.append('birthplace', birthplace === '' ? birthplace : 'None');
         form.append('name', name);
         form.append('address', address);
         form.append('age', age);

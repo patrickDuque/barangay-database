@@ -33,7 +33,7 @@ export default React.memo(props => {
         <ul className='DropdownList'>
           <li>View</li>
           <li onClick={editProfile}>Edit</li>
-          <li>Delete</li>
+          <li onClick={props.delete}>Delete</li>
         </ul>
       )}
     </div>
