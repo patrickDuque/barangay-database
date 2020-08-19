@@ -87,9 +87,9 @@ export default () => {
           </div>
         ) : (
           <div className='AddProfileImage uk-position-relative uk-margin-auto'>
-            <button className='uk-position-center ImageCapture' onClick={showCameraHandler}>
+            <Button className='uk-position-center ImageCapture' onClick={showCameraHandler}>
               Open camera
-            </button>
+            </Button>
           </div>
         )}
         <Modal show={showCamera} removeModal={closeCameraHandler}>
@@ -105,9 +105,9 @@ export default () => {
                 mirrored={true}
               />
               <div className='uk-text-center uk-margin-small-top'>
-                <button className='ImageCapture' onClick={capture}>
+                <Button className='ImageCapture' onClick={capture}>
                   Capture photo
-                </button>
+                </Button>
               </div>
             </React.Fragment>
           )}
@@ -167,7 +167,9 @@ export default () => {
         </div>
         <div className='uk-text-center'>
           <Button to='/add-profile/address'>Previous</Button>
-          <Button onClick={submitProfileHandler}>Submit</Button>
+          <Button disabled={!imgSrc || name !== '' || address !== ''} onClick={submitProfileHandler}>
+            Submit
+          </Button>
         </div>
       </React.Fragment>
     );

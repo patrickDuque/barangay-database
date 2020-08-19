@@ -49,7 +49,16 @@ const reducer = (state = initialState, action) => {
       newState.loading = true;
       break;
     case actionTypes.GET_PROFILES_SUCCESS:
-      newState.profiles = action.profiles;
+      newState.profiles = action.profiles.map(profile => {
+        const today = new Date();
+        const birthDate = new Date(profile.birthday);
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+          age = age - 1;
+        }
+        return { ...profile, age: age };
+      });
       newState.loading = false;
       newState.error = false;
       break;

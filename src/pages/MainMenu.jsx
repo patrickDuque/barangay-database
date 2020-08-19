@@ -40,7 +40,8 @@ export default ErrorHandler(() => {
         profile.name.toLowerCase().includes(searchbar.toLowerCase()) ||
         profile.address.toLowerCase().includes(searchbar.toLowerCase()) ||
         profile.sector.toLowerCase() === searchbar.toLowerCase() ||
-        profile.sex.toLowerCase() === searchbar.toLowerCase()
+        profile.sex.toLowerCase() === searchbar.toLowerCase() ||
+        profile.age.toString() === searchbar
     )
     .sort(sortName);
 
