@@ -19,21 +19,33 @@ export default props => {
     dispatch(deleteProfile(id));
   };
 
+  const getAge = bday => {
+    const today = new Date();
+    const birthDate = new Date(bday);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age = age - 1;
+    }
+    return age;
+  };
+
   return (
     <tr className='TableItemsComponent'>
-      <td>{props.name}</td>
-      <td>{props.address}</td>
-      <td>{props.contactNum}</td>
-      <td>{props.birthday}</td>
-      <td>{props.age}</td>
-      <td>{props.sex}</td>
+      <td>{props.profile.name}</td>
+      <td>{props.profile.address}</td>
+      <td>{props.profile.contactNumber}</td>
+      <td>{props.profile.birthday}</td>
+      <td>{getAge(props.profile.birthday)}</td>
+      <td>{props.profile.sex}</td>
       <td className='TableItemMenu'>
         <Dropdown
-          userId={props.id}
+          profile={props.profile}
+          userId={props.profile._id}
           show={show}
           closeDropdown={handleRemoveDropDown}
           openDropdown={handleToggleDropDown}
-          delete={() => deleteProfileInfo(props.id)}
+          delete={() => deleteProfileInfo(props.profile._id)}
         />
       </td>
     </tr>

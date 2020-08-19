@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import moment from 'moment';
+
 import { addProfile } from '../store/actions/profileActions';
 
 import history from '../helpers/history';
@@ -16,21 +18,10 @@ export default () => {
   const [ birthday, setBirthday ] = useState('');
   const [ sex, setSex ] = useState('Male');
 
-  const getAge = bday => {
-    var today = new Date();
-    var birthDate = new Date(bday);
-    var age = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age = age - 1;
-    }
-    return age;
-  };
 
   const nextSectionHandler = () => {
     const details = {
-      birthday : new Date(birthday).toDateString().split(' ').filter((_, i) => i > 0).join(', '),
-      age      : getAge(birthday),
+      birthday : moment(birthday).format('MMMM D YYYY'),
       sex      : sex,
       name     : `${lname.toUpperCase()}, ${fname} ${mname.toUpperCase()}`
     };

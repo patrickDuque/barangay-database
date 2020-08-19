@@ -12,22 +12,28 @@ import MainMenu from './pages/MainMenu';
 import AddProfile from './pages/AddProfile';
 import AddAddress from './pages/AddAddress';
 import AddOtherDetails from './pages/AddOtherDetails';
+import Print from './pages/Print';
 import SignIn from './pages/SignIn';
 
 function App() {
   const user = useSelector(state => state.user.user);
 
-  let routes = <Route path='/signin' component={SignIn} />;
+  let routes = (
+    <Switch>
+      <Route path='/signin' component={SignIn} />
+    </Switch>
+  );
 
   if (user) {
     routes = (
-      <React.Fragment>
+      <Switch>
         <Route path='/signin' component={SignIn} />
-        <Route path='/add-profile/address/other-details' component={AddOtherDetails} />
-        <Route path='/add-profile/address' component={AddAddress} />
-        <Route path='/add-profile' component={AddProfile} />
+        <Route path='/add-profile/address/other-details' exact component={AddOtherDetails} />
+        <Route path='/add-profile/address' exact component={AddAddress} />
+        <Route path='/add-profile' exact component={AddProfile} />
+        <Route path='/profiles/:id' component={Print} />
         <Route path='/' exact component={MainMenu} />
-      </React.Fragment>
+      </Switch>
     );
   }
 
@@ -37,9 +43,7 @@ function App() {
       <div className='uk-width-1-5'>
         <Navbar />
       </div>
-      <div className='uk-width-4-5'>
-        <Switch>{routes}</Switch>
-      </div>
+      <div className='uk-width-4-5'>{routes}</div>
     </div>
   );
 }

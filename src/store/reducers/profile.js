@@ -5,15 +5,11 @@ const initialState = {
   name          : null,
   address       : null,
   birthday      : null,
-  age           : null,
   sex           : null,
-  occupation    : null,
-  sector        : null,
-  contactNumber : null,
-  birthplace    : null,
   error         : null,
   loading       : false,
-  profiles      : []
+  profiles      : [],
+  singleProfile : null
 };
 
 const reducer = (state = initialState, action) => {
@@ -46,10 +42,6 @@ const reducer = (state = initialState, action) => {
       newState.address = null;
       newState.birthday = null;
       newState.sex = null;
-      newState.occupation = null;
-      newState.sector = null;
-      newState.contactNumber = null;
-      newState.birthplace = null;
       newState.error = null;
       newState.loading = false;
       break;
@@ -65,6 +57,20 @@ const reducer = (state = initialState, action) => {
       newState.loading = false;
       newState.error = action.error;
       break;
+    case actionTypes.GET_SINGLE_PROFILE_START:
+      newState.loading = true;
+      break;
+    case actionTypes.GET_SINGLE_PROFILE_SUCCESS:
+      newState.singleProfile = action.profile;
+      newState.loading = false;
+      newState.error = false;
+      break;
+    case actionTypes.GET_SINGLE_PROFILE_FAIL:
+      newState.loading = false;
+      newState.error = action.error;
+      break;
+    case actionTypes.DELETE_PROFILE:
+      newState.profiles = state.profiles.filter(profile => profile._id !== action.id);
   }
   return newState;
 };

@@ -29,7 +29,6 @@ export default () => {
 
   const name = useSelector(state => state.profile.name);
   const address = useSelector(state => state.profile.address);
-  const age = useSelector(state => state.profile.age);
   const birthday = useSelector(state => state.profile.birthday);
   const sex = useSelector(state => state.profile.sex);
   const loading = useSelector(state => state.profile.loading);
@@ -62,15 +61,14 @@ export default () => {
         let form = new FormData();
         form.append('picture', file, `${name}.jpeg`);
         form.append('sector', sector);
-        form.append('contactNumber', contactNumber);
-        form.append('occupation', occupation === '' ? occupation : 'None');
-        form.append('birthplace', birthplace === '' ? birthplace : 'None');
+        form.append('contactNumber', contactNumber === '' ? 'No contact number' : contactNumber);
+        form.append('occupation', occupation === '' ? 'None' : occupation);
+        form.append('birthplace', birthplace === '' ? 'None' : birthplace);
         form.append('name', name);
         form.append('address', address);
-        form.append('age', age);
         form.append('birthday', birthday);
         form.append('sex', sex);
-        form.append('transfer', transfer);
+        form.append('transfer', transfer === '' ? new Date().getFullYear() : transfer);
         dispatch(submitProfile(form));
       });
     } catch (error) {

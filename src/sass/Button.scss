@@ -1,6 +1,6 @@
 .ButtonComponent {
   background-color: white;
-  border: none;
+  border: 1px solid #181c3a;
   color: #181c3a;
   outline: none;
   cursor: pointer;
@@ -15,6 +15,7 @@
   &:hover {
     background-color: $theme-color;
     color: white;
+    border: 1px solid white;
   }
 
   a {

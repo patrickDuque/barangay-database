@@ -8,7 +8,7 @@ import Input from '../components/UI/Input';
 import Spinner from '../components/UI/Spinner';
 import ErrorHandler from '../hoc/ErrorHandler';
 
-export default ErrorHandler(props => {
+export default ErrorHandler(() => {
   const dispatch = useDispatch();
 
   const [ searchbar, setSearchBar ] = useState('');
@@ -35,7 +35,13 @@ export default ErrorHandler(props => {
   };
 
   const filteredProfile = profiles
-    .filter(profile => profile.name.toLowerCase().includes(searchbar.toLowerCase()))
+    .filter(
+      profile =>
+        profile.name.toLowerCase().includes(searchbar.toLowerCase()) ||
+        profile.address.toLowerCase().includes(searchbar.toLowerCase()) ||
+        profile.sector.toLowerCase() === searchbar.toLowerCase() ||
+        profile.sex.toLowerCase() === searchbar.toLowerCase()
+    )
     .sort(sortName);
 
   let mainPage = <Spinner />;

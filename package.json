@@ -2,8 +2,8 @@
   "name": "barangay-db",
   "version": "0.1.0",
   "private": true,
-	"homepage": "./",
-	"main": "public/electron.js",
+  "homepage": "./",
+  "main": "public/electron.js",
   "build": {
     "appId": "barangay.db.fe",
     "win": {
@@ -19,6 +19,7 @@
     "electron": "^9.2.0",
     "electron-is-dev": "^1.2.0",
     "form-data": "^3.0.0",
+    "moment": "^2.27.0",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
@@ -40,7 +41,7 @@
     "electron-dev": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "electron-build": "electron-builder",
     "build": "npm run react-build && npm run electron-build",
-		"dist-all": "electron-builder"
+    "dist-all": "electron-builder"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -37,14 +37,26 @@ export const getProfiles = () => async dispatch => {
   }
 };
 
+export const getSingleProfile = id => async dispatch => {
+  dispatch({ type: actionTypes.GET_SINGLE_PROFILE_START });
+  try {
+    const profile = await axios.get(`${id}`);
+    dispatch({ type: actionTypes.GET_SINGLE_PROFILE_SUCCESS, profile: profile.data.profile });
+    UIkit.notification({ message: profile.data.message });
+  } catch (error) {
+    dispatch({ type: actionTypes.GET_SINGLE_PROFILE_FAIL, error: error.message });
+    UIkit.notification({ message: error.message });
+  }
+};
+
 /* ============================================================
 													DELETE ACTIONS
 ===============================================================*/
 export const deleteProfile = id => async dispatch => {
   try {
     const deletedProfile = await axios.delete(`/profiles/${id}`);
+    dispatch({ type: actionTypes.DELETE_PROFILE, id });
     UIkit.notification({ message: deletedProfile.data.message });
-    dispatch(getProfiles());
   } catch (error) {
     UIkit.notification({ message: error.message });
   }

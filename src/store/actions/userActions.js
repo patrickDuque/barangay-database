@@ -16,7 +16,7 @@ export const signIn = form => async dispatch => {
     history.push('/');
   } catch (error) {
     dispatch({ type: actionTypes.SIGN_IN_FAIL });
-    UIkit.notification({ message: error.message });
+    UIkit.notification({ message: 'Invalid credentials' });
   }
 };
 
