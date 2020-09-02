@@ -1,19 +1,18 @@
 import React from 'react';
-import TableItems from './TableItems';
+import TableItemsBusinesses from './TableItemsBusinesses';
 
 export default props => {
-  const tableItems = props.profiles.map(profile => <TableItems key={profile._id} profile={profile} />);
+  const tableItems = props.items.map(item => <TableItemsBusinesses key={item._id} item={item} />);
 
   return (
     <table className='TableComponent uk-table uk-table-responsive uk-margin-remove-top'>
       <thead>
         <tr>
-          <th>Name</th>
+          <th>Establishment</th>
+          <th>Nature</th>
           <th>Address</th>
-          <th>Contact Num</th>
-          <th>Birthday</th>
-          <th>Age</th>
-          <th>Sex</th>
+          <th>Existence</th>
+          <th>Owner</th>
           <th>Menu</th>
         </tr>
       </thead>

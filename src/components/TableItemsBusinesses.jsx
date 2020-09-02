@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Dropdown from './UI/Dropdown';
-import { deleteProfile } from '../store/actions/profileActions';
+import { deleteBusiness } from '../store/actions/businessActions';
 
 export default props => {
   const dispatch = useDispatch();
@@ -15,26 +15,24 @@ export default props => {
     setShow(false);
   };
 
-  const deleteProfileInfo = id => {
-    dispatch(deleteProfile(id));
+  const deleteBusinessInfo = id => {
+    dispatch(deleteBusiness(id));
   };
 
   return (
     <tr className='TableItemsComponent'>
-      <td>{props.profile.name}</td>
-      <td>{props.profile.address}</td>
-      <td>{props.profile.contactNumber}</td>
-      <td>{props.profile.birthday}</td>
-      <td>{props.profile.age}</td>
-      <td>{props.profile.sex}</td>
+      <td>{props.item.name}</td>
+      <td>{props.item.nature}</td>
+      <td>{props.item.address}</td>
+      <td>{props.item.existence}</td>
+      <td>{props.item.owner}</td>
       <td className='TableItemMenu'>
         <Dropdown
-					to={`/profiles/${props.profile._id}`}
-          userId={props.profile._id}
+          to={`/business/${props.item._id}`}
           show={show}
           closeDropdown={handleRemoveDropDown}
           openDropdown={handleToggleDropDown}
-          delete={() => deleteProfileInfo(props.profile._id)}
+          delete={() => deleteBusinessInfo(props.item._id)}
         />
       </td>
     </tr>

@@ -25,3 +25,17 @@ export const GET_SINGLE_PROFILE_SUCCESS = 'GET_SINGLE_PROFILE_SUCCESS';
 export const GET_SINGLE_PROFILE_FAIL = 'GET_SINGLE_PROFILE_FAIL';
 //Delete
 export const DELETE_PROFILE = 'DELETE_PROFILE';
+
+/* ============================================================
+													BUSINESS ACTIONS
+===============================================================*/
+//Post
+export const SUBMIT_BUSINESS_START = 'SUBMIT_BUSINESS_START';
+export const SUBMIT_BUSINESS_FAIL = 'SUBMIT_BUSINESS_FAIL';
+export const SUBMIT_BUSINESS_SUCCESS = 'SUBMIT_BUSINESS_SUCCESS';
+//Get
+export const GET_BUSINESS_START = 'GET_BUSINESS_START';
+export const GET_BUSINESS_FAIL = 'GET_BUSINESS_FAIL';
+export const GET_BUSINESS_SUCCESS = 'GET_BUSINESS_SUCCESS';
+//Delete
+export const DELETE_BUSINESS = 'DELETE_BUSINESS';

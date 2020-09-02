@@ -167,9 +167,7 @@ export default () => {
         </div>
         <div className='uk-text-center'>
           <Button to='/add-profile/address'>Previous</Button>
-          <Button disabled={!imgSrc || name !== '' || address !== ''} onClick={submitProfileHandler}>
-            Submit
-          </Button>
+          <Button onClick={submitProfileHandler}>Submit</Button>
         </div>
       </React.Fragment>
     );

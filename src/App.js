@@ -14,6 +14,8 @@ import AddAddress from './pages/AddAddress';
 import AddOtherDetails from './pages/AddOtherDetails';
 import Print from './pages/Print';
 import SignIn from './pages/SignIn';
+import Businesses from './pages/Businesses';
+import AddBusiness from './pages/AddBusiness';
 
 function App() {
   const user = useSelector(state => state.user.user);
@@ -31,6 +33,8 @@ function App() {
         <Route path='/add-profile/address/other-details' exact component={AddOtherDetails} />
         <Route path='/add-profile/address' exact component={AddAddress} />
         <Route path='/add-profile' exact component={AddProfile} />
+        <Route path='/all-business' exact component={Businesses} />
+        <Route path='/add-business' exact component={AddBusiness} />
         <Route path='/profiles/:id' component={Print} />
         <Route path='/' exact component={MainMenu} />
       </Switch>

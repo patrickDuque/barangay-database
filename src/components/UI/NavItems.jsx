@@ -49,6 +49,16 @@ export default props => {
               Add Profile <FaUserPlus />
             </NavLink>
           </li>
+          <li className='NavItem'>
+            <NavLink to='/all-business'>
+              All Businesses <FaUserPlus />
+            </NavLink>
+          </li>
+          <li className='NavItem'>
+            <NavLink to='/add-business'>
+              Add Business <FaUserPlus />
+            </NavLink>
+          </li>
         </div>
         <div>
           <li className='NavItem'>
