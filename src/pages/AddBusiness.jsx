@@ -1,5 +1,5 @@
 import React, { useRef, useCallback, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 
 import Webcam from 'react-webcam';
@@ -7,6 +7,7 @@ import Input from '../components/UI/Input';
 import Select from '../components/UI/Select';
 import Button from '../components/UI/Button';
 import Modal from '../components/UI/Modal/Modal';
+import Spinner from '../components/UI/Spinner';
 
 import { submitBusiness } from '../store/actions/businessActions';
 
@@ -26,6 +27,7 @@ export default () => {
   const [ owner, setOwner ] = useState('');
   const [ requestingPerson, setRequestingPerson ] = useState('');
   const [ nature, setNature ] = useState('');
+  const loading = useSelector(state => state.business.loading);
   const webcamRef = useRef(null);
 
   const capture = useCallback(
@@ -55,7 +57,7 @@ export default () => {
         form.append('picture', file, `${name}.jpeg`);
         form.append('name', name);
         form.append('address', address);
-        form.append('nature', nature);
+        form.append('nature', nature ? nature : 'Others');
         form.append('existence', moment(existence).format('MMMM D YYYY'));
         form.append('owner', owner);
         form.append('requestingPerson', requestingPerson);
@@ -66,96 +68,102 @@ export default () => {
     }
   };
 
-  return (
-    <div className='AddBusinessPage uk-flex uk-padding'>
-      <div className='AddBusiness uk-padding'>
-        <div className='uk-padding-remove uk-margin-medium-top'>
-          <Input
-            type='text'
-            id='establishment'
-            label='Establishment'
-            value={name}
-            onChange={e => setName(e.target.value)}
-          />
-          <Input
-            type='text'
-            id='address-business'
-            label='Address'
-            value={address}
-            onChange={e => setAddress(e.target.value)}
-          />
-          <Input
-            type='date'
-            id='existence'
-            label='Existence'
-            value={existence}
-            onChange={e => setExistence(e.target.value)}
-          />
-          <Input type='text' id='owner' label='Owner' value={owner} onChange={e => setOwner(e.target.value)} />
-          <Input
-            type='text'
-            id='req-person'
-            label='Requesting Person'
-            value={requestingPerson}
-            onChange={e => setRequestingPerson(e.target.value)}
-          />
-          <Select
-            id='nature'
-            label='Nature'
-            options={[
-              'Others',
-              'Market',
-              'Bakery',
-              'Barbershop',
-              'Food Stall',
-              'Salon',
-              'Hardware',
-              'Convenience Store',
-              'Restaurant',
-              'Eatery',
-              'Coffeshop'
-            ]}
-            value={nature}
-            onChange={e => setNature(e.target.value)}
-          />
-        </div>
-      </div>
-      {imgSrc ? (
-        <div className='uk-margin-auto'>
-          <div className='AddProfileImage'>
-            <img className='uk-padding-remove' src={imgSrc} alt='dp' />
-          </div>
-          <div className='uk-text-center uk-margin-top'>
-            <Button onClick={submitBusinessHandler}>Submit</Button>
-          </div>
-        </div>
-      ) : (
-        <div className='AddProfileImage uk-position-relative uk-margin-auto'>
-          <Button className='uk-position-center ImageCapture' onClick={showCameraHandler}>
-            Open camera
-          </Button>
-        </div>
-      )}
-      <Modal show={showCamera} removeModal={closeCameraHandler}>
-        {showCamera && (
-          <React.Fragment>
-            <Webcam
-              audio={false}
-              height={360}
-              ref={webcamRef}
-              screenshotFormat='image/jpeg'
-              width={450}
-              videoConstraints={videoConstraints}
-              mirrored={true}
+  let addBusiness = <Spinner />;
+
+  if (!loading) {
+    addBusiness = (
+      <React.Fragment>
+        <div className='AddBusiness uk-padding'>
+          <div className='uk-padding-remove uk-margin-medium-top'>
+            <Input
+              type='text'
+              id='establishment'
+              label='Establishment'
+              value={name}
+              onChange={e => setName(e.target.value)}
             />
-            <div className='uk-text-center uk-margin-small-top'>
-              <Button className='ImageCapture' onClick={capture}>
-                Capture photo
-              </Button>
+            <Input
+              type='text'
+              id='address-business'
+              label='Address'
+              value={address}
+              onChange={e => setAddress(e.target.value)}
+            />
+            <Input
+              type='date'
+              id='existence'
+              label='Existence'
+              value={existence}
+              onChange={e => setExistence(e.target.value)}
+            />
+            <Input type='text' id='owner' label='Owner' value={owner} onChange={e => setOwner(e.target.value)} />
+            <Input
+              type='text'
+              id='req-person'
+              label='Requesting Person'
+              value={requestingPerson}
+              onChange={e => setRequestingPerson(e.target.value)}
+            />
+            <Select
+              id='nature'
+              label='Nature'
+              options={[
+                'Others',
+                'Market',
+                'Bakery',
+                'Barbershop',
+                'Food Stall',
+                'Salon',
+                'Hardware',
+                'Convenience Store',
+                'Restaurant',
+                'Eatery',
+                'Coffeshop'
+              ]}
+              value={nature}
+              onChange={e => setNature(e.target.value)}
+            />
+          </div>
+        </div>
+        {imgSrc ? (
+          <div className='uk-margin-auto'>
+            <div className='AddProfileImage'>
+              <img className='uk-padding-remove' src={imgSrc} alt='dp' />
             </div>
-          </React.Fragment>
+            <div className='uk-text-center uk-margin-top'>
+              <Button onClick={submitBusinessHandler}>Submit</Button>
+            </div>
+          </div>
+        ) : (
+          <div className='AddProfileImage uk-position-relative uk-margin-auto'>
+            <Button className='uk-position-center ImageCapture' onClick={showCameraHandler}>
+              Open camera
+            </Button>
+          </div>
         )}
-      </Modal>
-    </div>
-  );
+        <Modal show={showCamera} removeModal={closeCameraHandler}>
+          {showCamera && (
+            <React.Fragment>
+              <Webcam
+                audio={false}
+                height={360}
+                ref={webcamRef}
+                screenshotFormat='image/jpeg'
+                width={450}
+                videoConstraints={videoConstraints}
+                mirrored={true}
+              />
+              <div className='uk-text-center uk-margin-small-top'>
+                <Button className='ImageCapture' onClick={capture}>
+                  Capture photo
+                </Button>
+              </div>
+            </React.Fragment>
+          )}
+        </Modal>
+      </React.Fragment>
+    );
+  }
+
+  return <div className='AddBusinessPage uk-flex uk-padding'>{addBusiness}</div>;
 };

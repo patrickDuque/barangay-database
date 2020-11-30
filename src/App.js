@@ -12,7 +12,9 @@ import MainMenu from './pages/MainMenu';
 import AddProfile from './pages/AddProfile';
 import AddAddress from './pages/AddAddress';
 import AddOtherDetails from './pages/AddOtherDetails';
-import Print from './pages/Print';
+import PrintProfile from './pages/PrintProfile';
+import PrintId from './pages/PrintId';
+import PrintBusiness from './pages/PrintBusiness';
 import SignIn from './pages/SignIn';
 import Businesses from './pages/Businesses';
 import AddBusiness from './pages/AddBusiness';
@@ -35,7 +37,9 @@ function App() {
         <Route path='/add-profile' exact component={AddProfile} />
         <Route path='/all-business' exact component={Businesses} />
         <Route path='/add-business' exact component={AddBusiness} />
-        <Route path='/profiles/:id' component={Print} />
+        <Route path='/profiles/:id' component={PrintProfile} />
+        <Route path='/id/:id' component={PrintId} />
+        <Route path='/business/:id' component={PrintBusiness} />
         <Route path='/' exact component={MainMenu} />
       </Switch>
     );

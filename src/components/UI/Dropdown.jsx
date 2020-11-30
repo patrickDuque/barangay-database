@@ -27,7 +27,8 @@ export default React.memo(props => {
       <BsThreeDots onClick={props.openDropdown} />
       {props.show && (
         <ul className='DropdownList'>
-          <li onClick={() => history.push(props.to)}>View</li>
+          <li onClick={() => history.push(props.to)}>Certificate</li>
+          {props.isProfile && <li onClick={() => history.push(props.toID)}>ID</li>}
           <li onClick={props.delete}>Delete</li>
         </ul>
       )}

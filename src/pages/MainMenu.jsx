@@ -41,7 +41,8 @@ export default ErrorHandler(() => {
         profile.address.toLowerCase().includes(searchbar.toLowerCase()) ||
         profile.sector.toLowerCase() === searchbar.toLowerCase() ||
         profile.sex.toLowerCase() === searchbar.toLowerCase() ||
-        profile.age.toString() === searchbar
+        profile.age.toString() === searchbar ||
+        profile._id.includes(searchbar.toLowerCase())
     )
     .sort(sortName);
 

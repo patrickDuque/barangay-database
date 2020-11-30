@@ -1,0 +1,49 @@
+.IdPage {
+  // height: 480px;
+  // width: 288px;
+
+  div {
+    .IdPagePicture {
+      border-radius: 10px;
+      border: 1px solid black;
+      height: 80px;
+      width: 80px;
+    }
+
+    .IdMain {
+      align-items: center;
+
+      p {
+        text-decoration: underline;
+
+        span {
+          font-weight: bold;
+        }
+      }
+    }
+
+    img {
+      height: 48px;
+      width: 48px;
+    }
+
+    .IdPageContent {
+      border: 1px solid black;
+      padding: 0;
+      width: 360px;
+      height: 300px;
+
+      .IdHeader {
+        p {
+          font-size: 8px;
+        }
+      }
+    }
+
+    div {
+      h6 {
+        font-family: inherit;
+      }
+    }
+  }
+}

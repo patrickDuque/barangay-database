@@ -78,8 +78,15 @@ const reducer = (state = initialState, action) => {
       newState.loading = false;
       newState.error = action.error;
       break;
-    case actionTypes.DELETE_PROFILE:
+    case actionTypes.DELETE_PROFILE_START:
+      newState.loading = true;
+      break;
+    case actionTypes.DELETE_PROFILE_SUCCESS:
+      newState.loading = false;
       newState.profiles = state.profiles.filter(profile => profile._id !== action.id);
+      break;
+    case actionTypes.DELETE_PROFILE_FAIL:
+      newState.loading = false;
   }
   return newState;
 };

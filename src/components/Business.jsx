@@ -28,16 +28,16 @@ export default class extends Component {
             <p className='uk-margin-remove'>clearance from this office and result/s is/are listed below:</p>
             <div className='uk-margin-top'>
               <p className='uk-margin-remove'>
-                NAME: <span>{this.props.profile.name}</span>
+                NAME: <span>{this.props.business.name}</span>
               </p>
               <p className='uk-margin-remove'>
-                Address: <span>{this.props.profile.address}</span>
+                Address: <span>{this.props.business.address}</span>
               </p>
               <p className='uk-margin-remove'>
-                Date of birth: <span>{this.props.profile.birthday}</span>
+                Date of birth: <span>{this.props.business.birthday}</span>
               </p>
               <p className='uk-margin-remove'>
-                Place of birth: <span>{this.props.profile.birthplace}</span>
+                Place of birth: <span>{this.props.business.birthplace}</span>
               </p>
               <p className='uk-margin-remove'>Purpose:</p>
               <p className='uk-margin-remove'>
@@ -50,15 +50,12 @@ export default class extends Component {
               <p className='uk-margin-remove'>
                 Date of Issue: <span>{date.format('MMMM D YYYY')}</span>
               </p>
-              <p className='uk-margin-remove'>
-                Barangay ID: <span>{this.props.profile._id}</span>
-              </p>
             </div>
           </div>
           <div>
             <img
               className='ProfilePagePicture uk-margin-bottom'
-              src={`${this.props.profile.picture}`}
+              src={`${this.props.business.picture}`}
               alt='display pic'
             />
             <div className='RightThumbMark uk-margin-remove' />

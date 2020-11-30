@@ -29,12 +29,14 @@ export default props => {
       <td>{props.profile.sex}</td>
       <td className='TableItemMenu'>
         <Dropdown
-					to={`/profiles/${props.profile._id}`}
+          isProfile={true}
+          to={`/profiles/${props.profile._id}`}
           userId={props.profile._id}
           show={show}
           closeDropdown={handleRemoveDropDown}
           openDropdown={handleToggleDropDown}
           delete={() => deleteProfileInfo(props.profile._id)}
+          toID={`/id/${props.profile._id}`}
         />
       </td>
     </tr>

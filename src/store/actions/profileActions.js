@@ -12,6 +12,7 @@ export const addAddress = address => ({ type: actionTypes.ADD_ADDRESS, address }
 export const submitProfile = details => async dispatch => {
   dispatch({ type: actionTypes.SUBMIT_PROFILE_START });
   try {
+    console.log(localStorage.getItem('token'));
     const sendProfile = await axios.post('/profiles', details);
     dispatch({ type: actionTypes.SUBMIT_PROFILE_SUCCESS });
     UIkit.notification({ message: sendProfile.data.message });
@@ -53,11 +54,13 @@ export const getSingleProfile = id => async dispatch => {
 													DELETE ACTIONS
 ===============================================================*/
 export const deleteProfile = id => async dispatch => {
+  dispatch({ type: actionTypes.DELETE_PROFILE_START, id });
   try {
     const deletedProfile = await axios.delete(`/profiles/${id}`);
-    dispatch({ type: actionTypes.DELETE_PROFILE, id });
+    dispatch({ type: actionTypes.DELETE_PROFILE_SUCCESS, id });
     UIkit.notification({ message: deletedProfile.data.message });
   } catch (error) {
+    dispatch({ type: actionTypes.DELETE_PROFILE_FAIL });
     UIkit.notification({ message: error.message });
   }
 };
