@@ -15,9 +15,12 @@ import AddOtherDetails from './pages/AddOtherDetails';
 import PrintProfile from './pages/PrintProfile';
 import PrintId from './pages/PrintId';
 import PrintBusiness from './pages/PrintBusiness';
+import PrintTricycle from './pages/PrintTricycle';
 import SignIn from './pages/SignIn';
 import Businesses from './pages/Businesses';
 import AddBusiness from './pages/AddBusiness';
+import Tricycles from './pages/Tricycles';
+import AddTricycle from './pages/AddTricycle';
 
 function App() {
   const user = useSelector(state => state.user.user);
@@ -36,10 +39,13 @@ function App() {
         <Route path='/add-profile/address' exact component={AddAddress} />
         <Route path='/add-profile' exact component={AddProfile} />
         <Route path='/all-business' exact component={Businesses} />
+        <Route path='/all-tricycle' exact component={Tricycles} />
         <Route path='/add-business' exact component={AddBusiness} />
+        <Route path='/add-tricycle' exact component={AddTricycle} />
         <Route path='/profiles/:id' component={PrintProfile} />
         <Route path='/id/:id' component={PrintId} />
         <Route path='/business/:id' component={PrintBusiness} />
+        <Route path='/tricycle/:id' component={PrintTricycle} />
         <Route path='/' exact component={MainMenu} />
       </Switch>
     );

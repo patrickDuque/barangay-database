@@ -1,9 +1,9 @@
-.ProfilePage {
+.BusinessPage {
   background: url(../assets/images/bamboo.jpg) no-repeat !important;
   background-size: cover;
 
   div {
-    .ProfilePagePicture {
+    .BusinessPagePicture {
       border-radius: 10px;
       border: 1px solid black;
       height: 192px;
@@ -20,7 +20,7 @@
       height: 96px;
       width: 96px;
     }
-    .ProfilePageContent {
+    .BusinessPageContent {
       border: 1px solid black;
       border-radius: 20px;
     }

@@ -2,7 +2,7 @@ import React from 'react';
 
 export default props => (
   <div className='SelectComponent uk-margin'>
-    <label className='uk-text-center' htmlFor={props.id}>
+    <label className='uk-text-center' htmlFor={props.id} style={props.isId && { color: '#181c3a' }}>
       {props.label}
     </label>
     <select {...props} id={props.id}>

@@ -8,7 +8,7 @@ export default class extends Component {
   render() {
     const date = moment();
     return (
-      <div className='ProfilePage uk-padding'>
+      <div className='BusinessPage uk-padding'>
         <div className='uk-flex uk-flex-between uk-padding'>
           <img src={MeycLogo} alt='brgy-logo' height='96px' />
           <div className='uk-text-center'>
@@ -21,11 +21,11 @@ export default class extends Component {
         </div>
         <h3 className='uk-text-center uk-margin-remove-top uk-margin-medium-bottom'>OFFICE OF THE BARANGAY CHAIRMAN</h3>
         <div className='uk-flex uk-flex-between'>
-          <div className='ProfilePageContent uk-padding'>
+          <div className='BusinessPageContent uk-padding'>
             <h4 className='uk-margin-remove'>TO WHOM IT MAY CONCERN:</h4>
-            <p className='uk-margin-remove'>This is to certify that this person whose name. right thumb mark </p>
-            <p className='uk-margin-remove'>and picture appear hereon has requested a record and Barangay</p>
-            <p className='uk-margin-remove'>clearance from this office and result/s is/are listed below:</p>
+            <p className='uk-margin-remove'>This is to certify that the establishment below</p>
+            <p className='uk-margin-remove'>has requested for a Barangay Business Clearance</p>
+            <p className='uk-margin-remove'>from this office with details listed below:</p>
             <div className='uk-margin-top'>
               <p className='uk-margin-remove'>
                 NAME: <span>{this.props.business.name}</span>
@@ -54,7 +54,7 @@ export default class extends Component {
           </div>
           <div>
             <img
-              className='ProfilePagePicture uk-margin-bottom'
+              className='BusinessPagePicture uk-margin-bottom'
               src={`${this.props.business.picture}`}
               alt='display pic'
             />

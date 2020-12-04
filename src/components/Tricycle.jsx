@@ -7,8 +7,9 @@ import MeycLogo from '../assets/images/meyc-logo.jfif';
 export default class extends Component {
   render() {
     const date = moment();
+    console.log(this.props.tricycle);
     return (
-      <div className='ProfilePage uk-padding'>
+      <div className='BusinessPage uk-padding'>
         <div className='uk-flex uk-flex-between uk-padding'>
           <img src={MeycLogo} alt='brgy-logo' height='96px' />
           <div className='uk-text-center'>
@@ -20,53 +21,59 @@ export default class extends Component {
           <img src={Logo} alt='brgy-logo' height='96px' />
         </div>
         <h3 className='uk-text-center uk-margin-remove-top uk-margin-medium-bottom'>OFFICE OF THE BARANGAY CHAIRMAN</h3>
+        <h4 className=''>TO WHOM IT MAY CONCERN:</h4>
+        <p className='uk-margin-remove'>This is to certify that {this.props.tricycle.name}</p>
+        <p className='uk-margin-remove'>
+          with address at {this.props.tricycle.address} Pandayan, City of Meycauayan, Bulacan
+        </p>
+        <p className='uk-margin-remove'>Is the owner of a tricycle with specifications:</p>
         <div className='uk-flex uk-flex-between'>
-          <div className='ProfilePageContent uk-padding'>
-            <h4 className='uk-margin-remove'>TO WHOM IT MAY CONCERN:</h4>
-            <p className='uk-margin-remove'>This is to certify that this person whose name. right thumb mark </p>
-            <p className='uk-margin-remove'>and picture appear hereon has requested a record and Barangay</p>
-            <p className='uk-margin-remove'>clearance from this office and result/s is/are listed below:</p>
-            <div className='uk-margin-top'>
+          <div className='BusinessPageContent uk-padding'>
+            <div className=''>
               <p className='uk-margin-remove'>
-                NAME: <span>{this.props.profile.name}</span>
+                Brand: <span>{this.props.tricycle.brand}</span>
               </p>
               <p className='uk-margin-remove'>
-                Address: <span>{this.props.profile.address}</span>
+                Color: <span>{this.props.tricycle.color}</span>
               </p>
               <p className='uk-margin-remove'>
-                Date of birth: <span>{this.props.profile.birthday}</span>
+                Year Model: <span>{this.props.tricycle.model}</span>
               </p>
               <p className='uk-margin-remove'>
-                Place of birth: <span>{this.props.profile.birthplace}</span>
+                Plate Number: <span>{this.props.tricycle.plateNumber}</span>
               </p>
               <p className='uk-margin-remove'>
-                Purpose: <span>{this.props.purpose}</span>
+                Body Number: <span>{this.props.tricycle.bodyNumber}</span>
               </p>
               <p className='uk-margin-remove'>
-                Remarks: <span>No Derogatory Records as of Date</span>
+                Affiliation: <span>{this.props.tricycle.affiliation}</span>
               </p>
-              <p className='uk-margin-remove'>CTC No.:</p>
+              <p className='uk-margin-remove'>
+                Motor Number: <span>{this.props.tricycle.motorNumber}</span>
+              </p>
               <p className='uk-margin-remove'>
                 Place of Issue: <span>Barangay Pandayan, Meycauayan, Bulacan</span>
               </p>
               <p className='uk-margin-remove'>
                 Date of Issue: <span>{date.format('MMMM D YYYY')}</span>
               </p>
-              <p className='uk-margin-remove'>
-                Barangay ID: <span>{this.props.profile._id}</span>
-              </p>
             </div>
           </div>
           <div>
             <img
-              className='ProfilePagePicture uk-margin-bottom'
-              src={`${this.props.profile.picture}`}
+              className='BusinessPagePicture uk-margin-bottom'
+              src={`${this.props.tricycle.picture}`}
               alt='display pic'
             />
             <div className='RightThumbMark uk-margin-remove' />
             <p className='uk-margin-remove uk-text-center'>Right Thumb Mark</p>
           </div>
         </div>
+        <p className='uk-margin-medium'>
+          This clearance is hereby granted for the purpose of securing "Motorized Tricycle Operator's Permit" from the
+          City Franchising Unit of the Office of the Mayor, City of Meycauayan Bulacan for the year{' '}
+          {date.format('YYYY')}
+        </p>
         <div className='uk-flex uk-flex-between'>
           <ul className='uk-margin-top'>
             <li>
@@ -76,7 +83,7 @@ export default class extends Component {
             <li>Not valid without the official Seal and Authorized Signature</li>
           </ul>
           <div className='uk-margin-top uk-text-center'>
-            <h4 className='uk-margin-remove'>Judge Rolando L. Bulan (Ret.)</h4>
+            <h4 className='uk-margin-remove'>Judge Rolando L. Bulan(Ret.)</h4>
             <h5 className='uk-margin-remove'>Punong Barangay</h5>
           </div>
         </div>

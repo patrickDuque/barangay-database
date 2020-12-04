@@ -1,24 +1,44 @@
 .IdPage {
   // height: 480px;
   // width: 288px;
+  p {
+    font-size: 10px;
+  }
+
+  .IdName {
+    font-size: 15px;
+    padding: 3px;
+    background-color: white !important;
+
+    p:first-child {
+      font-size: 18px;
+    }
+
+    p {
+      text-align: left;
+    }
+  }
 
   div {
     .IdPagePicture {
+      border: 1px solid black;
+      height: 120px;
+      width: 95px;
+    }
+
+    .IdPageThumb {
       border-radius: 10px;
       border: 1px solid black;
-      height: 80px;
-      width: 80px;
+      height: 60px;
+      width: 95px;
+      background-color: white !important;
     }
 
     .IdMain {
-      align-items: center;
+      align-items: flex-end;
 
-      p {
-        text-decoration: underline;
-
-        span {
-          font-weight: bold;
-        }
+      span {
+        font-weight: bold;
       }
     }
 
@@ -29,9 +49,11 @@
 
     .IdPageContent {
       border: 1px solid black;
+      border-radius: 3px;
       padding: 0;
       width: 360px;
-      height: 300px;
+      height: 260px;
+      background: url(../assets/images/bamboo.jpg) no-repeat !important;
 
       .IdHeader {
         p {
@@ -45,5 +67,12 @@
         font-family: inherit;
       }
     }
+  }
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important; /*Chrome, Safari */
+    color-adjust: exact !important; /*Firefox*/
   }
 }

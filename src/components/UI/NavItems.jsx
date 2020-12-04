@@ -2,8 +2,9 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Logo from '../../assets/images/logo.jfif';
 import { TiThMenu } from 'react-icons/ti';
-import { FaUserPlus, FaUser } from 'react-icons/fa';
+import { FaUserPlus, FaUser, FaBusinessTime, FaBicycle } from 'react-icons/fa';
 import { GoSignIn, GoSignOut } from 'react-icons/go';
+import { MdBusinessCenter } from 'react-icons/md';
 import { IconContext } from 'react-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store/actions/userActions';
@@ -51,12 +52,22 @@ export default props => {
           </li>
           <li className='NavItem'>
             <NavLink to='/all-business'>
-              All Businesses <FaUserPlus />
+              All Businesses <MdBusinessCenter />
             </NavLink>
           </li>
           <li className='NavItem'>
             <NavLink to='/add-business'>
-              Add Business <FaUserPlus />
+              Add Business <FaBusinessTime />
+            </NavLink>
+          </li>
+          <li className='NavItem'>
+            <NavLink to='/all-tricycle'>
+              All Tricycles <FaBicycle />
+            </NavLink>
+          </li>
+          <li className='NavItem'>
+            <NavLink to='/add-tricycle'>
+              Add Tricycles <FaBicycle />
             </NavLink>
           </li>
         </div>

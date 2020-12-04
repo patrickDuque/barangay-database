@@ -41,3 +41,17 @@ export const GET_BUSINESS_FAIL = 'GET_BUSINESS_FAIL';
 export const GET_BUSINESS_SUCCESS = 'GET_BUSINESS_SUCCESS';
 //Delete
 export const DELETE_BUSINESS = 'DELETE_BUSINESS';
+
+/* ============================================================
+													TRICYCLE ACTIONS
+===============================================================*/
+//Post
+export const SUBMIT_TRICYCLE_START = 'SUBMIT_TRICYCLE_START';
+export const SUBMIT_TRICYCLE_FAIL = 'SUBMIT_TRICYCLE_FAIL';
+export const SUBMIT_TRICYCLE_SUCCESS = 'SUBMIT_TRICYCLE_SUCCESS';
+//Get
+export const GET_TRICYCLE_START = 'GET_TRICYCLE_START';
+export const GET_TRICYCLE_FAIL = 'GET_TRICYCLE_FAIL';
+export const GET_TRICYCLE_SUCCESS = 'GET_TRICYCLE_SUCCESS';
+//Delete
+export const DELETE_TRICYCLE = 'DELETE_TRICYCLE';
