@@ -1,92 +1,135 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 
-import Logo from '../assets/images/logo.jfif';
-import MeycLogo from '../assets/images/meyc-logo.jfif';
+import styled from 'styled-components';
+
+const Background = styled.div`font-family: 'Baloo Tamma 2';`;
+
+const Paragraph = styled.p`font-size: 9px;`;
+
+const NameContainer = styled.div`
+  font-size: 15px;
+  padding: 3px;
+  background-color: white;
+`;
+
+const Name = styled.p`font-size: 18px;`;
+
+const Image = styled.img`
+  border: 1px solid black;
+  height: 95px;
+  width: 95px;
+`;
+
+const ThumbMark = styled.div`
+  border-radius: 10px;
+  border: 1px solid black;
+  height: 60px;
+  width: 95px;
+  background-color: white !important;
+`;
+
+const Logo = styled.img`
+  height: 40px;
+  width: 40px;
+`;
+
+const PageContainer = styled.div`
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 0;
+  width: 350px;
+  height: 200px;
+  background: url(https://barangaybackend.s3-ap-southeast-1.amazonaws.com/bamboo.jpg) no-repeat !important;
+`;
+
+const Main = styled.div`align-items: flex-end;`;
+
+const Header = styled.p`
+  font-size: 12px;
+  font-weight: bold;
+`;
+
+const Span = styled.span`
+  font-weight: bold;
+  text-transform: capitalize;
+`;
 
 export default class extends Component {
   render() {
     console.log(this.props.profile);
     const date = moment();
     return (
-      <div className='IdPage uk-padding uk-background-cover'>
+      <Background className='uk-padding uk-background-cover'>
         <div className='uk-text-center uk-grid'>
-          <div className='IdPageContent uk-position-relative'>
+          <PageContainer className='uk-position-relative'>
             <div className='uk-flex uk-flex-between uk-padding-small'>
-              <img src={MeycLogo} alt='brgy-logo' height='48px' />
-              <div className='uk-text-center IdHeader'>
-                <p className='uk-margin-remove'>REPUBLIC OF THE PHILIPPINES</p>
-                <p className='uk-margin-remove'>PROVINCE OF BULACAN</p>
-                <p className='uk-margin-remove'>CITY OF MEYCAUAYAN BULACAN</p>
-                <p className='uk-margin-remove'>BARANGAY PANDAYAN</p>
+              <Logo src='https://barangaybackend.s3-ap-southeast-1.amazonaws.com/meyc-logo.jpg' alt='brgy-logo' />
+              <div className='uk-text-center'>
+                <Header className='uk-margin-remove'>CITY OF MEYCAUAYAN BULACAN</Header>
+                <Header className='uk-margin-remove'>BARANGAY PANDAYAN ID CARD</Header>
               </div>
-              <img src={Logo} alt='brgy-logo' height='48px' />
+              <Logo src='https://barangaybackend.s3-ap-southeast-1.amazonaws.com/logo.jpg' alt='brgy-logo' />
             </div>
-            <div className='uk-flex uk-flex-around IdMain'>
-              <img className='IdPagePicture' src={this.props.profile.picture} alt='img' />
-              <div className='uk-text-center IdName'>
-                <p className='uk-margin-remove'>{this.props.profile.name}</p>
-                <p className='uk-margin-remove'>
-                  Barangay ID: <span>{this.props.profile._id}</span>
-                </p>
-                <p className='uk-margin-remove'>{this.props.profile.address}</p>
-                <p className='uk-margin-remove'>Barangay Pandayan, City of Meycauayan, Bulacan</p>
-              </div>
-            </div>
-            <div className='uk-margin-top uk-position-bottom'>
-              <p className='uk-margin-remove uk-text-center'>__________________________</p>
-              <p className='uk-margin-remove uk-text-center'>Signature</p>
-            </div>
-          </div>
-          <div className='IdPageContent uk-position-relative'>
+            <Main className='uk-flex uk-flex-around'>
+              <Image src={this.props.profile.picture} alt='img' />
+              <NameContainer className='uk-text-center'>
+                <Name className='uk-margin-remove uk-text-left'>{this.props.profile.name}</Name>
+                <Paragraph className='uk-margin-remove uk-text-left'>
+                  ID Number: <Span>{this.props.profile._id}</Span>
+                </Paragraph>
+                <Paragraph className='uk-margin-remove uk-text-left'>{this.props.profile.address}</Paragraph>
+                <Paragraph className='uk-margin-remove uk-text-left'>
+                  Barangay Pandayan, City of Meycauayan, Bulacan
+                </Paragraph>
+              </NameContainer>
+            </Main>
+          </PageContainer>
+          <PageContainer className='uk-position-relative'>
             <div className='uk-flex uk-flex-around uk-margin-top'>
-              <div className='IdHeader'>
-                <div className='IdPageThumb' />
-                <p className='uk-margin-remove'>RIGHT THUMB MARK</p>
+              <div>
+                <ThumbMark />
+                <Paragraph className='uk-margin-remove'>RIGHT THUMB MARK</Paragraph>
               </div>
-              <div className='uk-text-left IdHeader'>
-                <p className='uk-margin-remove'>
-                  Date of birth: <span>{this.props.profile.birthday}</span>
-                </p>
-                <p className='uk-margin-remove'>
-                  Place of birth: <span>{this.props.profile.birthplace}</span>
-                </p>
-                <p className='uk-margin-remove'>
-                  Occupation: <span>{this.props.profile.occupation}</span>
-                </p>
-                <p className='uk-margin-remove'>
+              <div className='uk-text-left'>
+                <Paragraph className='uk-margin-remove'>
+                  Birthdate: <span>{this.props.profile.birthday}</span>
+                </Paragraph>
+                <Paragraph className='uk-margin-remove'>
                   Status: <span>{this.props.status ? this.props.status : 'Single'}</span>
-                </p>
-                <p className='uk-margin-remove'>
+                </Paragraph>
+                <Paragraph className='uk-margin-remove'>
                   Sector: <span>{this.props.profile.sector}</span>
-                </p>
-                <p className='uk-margin-remove'>
-                  Sex: <span>{this.props.profile.sex}</span>
-                </p>
-                <p className='uk-margin-remove'>
-                  Year Transfered: <span>{this.props.profile.transfer}</span>
-                </p>
-                <p className='uk-margin-remove'>
+                </Paragraph>
+                <Paragraph className='uk-margin-remove'>
                   Date of Issue: <span>{date.format('MMMM D YYYY')}</span>
-                </p>
+                </Paragraph>
               </div>
             </div>
-            <div className='uk-divider-icon uk-margin-remove' />
-            <p className='uk-margin-remove'>IN CASE OF EMERGENCY</p>
-            <div className='uk-divider-icon uk-margin-remove' />
-            <div className='uk-margin-left'>
-              <p className='uk-margin-remove uk-text-left'>Contact Person: {this.props.contactPerson}</p>
-              <p className='uk-margin-remove uk-text-left'>
-                Contact Number: {this.props.contactNumber ? this.props.contactNumber : `(+63)___-___-____`}
-              </p>
+            <div className='uk-margin-small-top uk-padding-small'>
+              <Paragraph className='uk-margin-remove-bottom uk-text-center'>__________________________</Paragraph>
+              <Paragraph className='uk-margin-remove uk-text-center'>Signature</Paragraph>
             </div>
-            <div className='uk-position-bottom'>
-              <p className='uk-margin-remove'>Judge Rolando L. Bulan (Ret.)</p>
-              <p className='uk-margin-remove'>Punong Barangay</p>
+            <div className='uk-flex uk-flex-around'>
+              <div>
+                <Paragraph className='uk-margin-remove uk-text-left'>
+                  Contact Person: <Span>{this.props.contactPerson}</Span>
+                </Paragraph>
+                <Paragraph className='uk-margin-remove uk-text-left'>
+                  Contact Number:{' '}
+                  <Span>{this.props.contactNumber ? this.props.contactNumber : `(+63)___-___-____`}</Span>
+                </Paragraph>
+              </div>
+              <div>
+                <Paragraph className='uk-margin-remove'>
+                  <strong>Judge Rolando L. Bulan (Ret.)</strong>
+                </Paragraph>
+                <Paragraph className='uk-margin-remove'>Punong Barangay</Paragraph>
+              </div>
             </div>
-          </div>
+          </PageContainer>
         </div>
-      </div>
+      </Background>
     );
   }
 }

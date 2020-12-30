@@ -38,11 +38,13 @@ export const getTricycles = () => async dispatch => {
 													DELETE ACTIONS
 ===============================================================*/
 export const deleteTricycle = id => async dispatch => {
+  dispatch({ type: actionTypes.DELETE_TRICYCLE_START });
   try {
     const deletedTricycle = await axios.delete(`/tricycle/${id}`);
-    dispatch({ type: actionTypes.DELETE_TRICYCLE, id });
+    dispatch({ type: actionTypes.DELETE_TRICYCLE_SUCCESS, id });
     UIkit.notification({ message: deletedTricycle.data.message });
   } catch (error) {
+    dispatch({ type: actionTypes.DELETE_TRICYCLE_FAIL });
     UIkit.notification({ message: error.message });
   }
 };

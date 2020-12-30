@@ -18,14 +18,16 @@ export default () => {
 
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
-    content : () => componentRef.current
+    content    : () => componentRef.current,
+    print      : () => window.print(),
+    copyStyles : true
   });
 
   return (
     <div className='PrintPage' style={{ backgroundColor: profile ? 'white' : '#181c3a' }}>
       <div className='uk-margin-top'>
         <Input
-          isId
+          isId={true}
           label='Contact Person'
           type='text'
           id='contactPerson'
@@ -33,7 +35,7 @@ export default () => {
           onChange={e => setContactPerson(e.target.value)}
         />
         <Select
-          isId
+          isId={true}
           id='status'
           label='Civil Status'
           options={[ 'Single', 'Married' ]}
@@ -41,7 +43,7 @@ export default () => {
           onChange={e => setStatus(e.target.value)}
         />
         <Input
-          isId
+          isId={true}
           label='Contact Number'
           type='text'
           id='contactNumber'

@@ -24,7 +24,7 @@ export default () => {
     tricycle =>
       tricycle.name.toLowerCase().includes(searchbar.toLowerCase()) ||
       tricycle.address.toLowerCase().includes(searchbar.toLowerCase()) ||
-      searchbar.toLowerCase().includes(tricycle.affiliation.toLowerCase())
+      tricycle.affiliation.toLowerCase().includes(searchbar.toLowerCase())
   );
 
   let table = <Spinner />;

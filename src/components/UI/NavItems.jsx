@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Logo from '../../assets/images/logo.jfif';
+import Logo from '../../assets/images/logo.jpg';
 import { TiThMenu } from 'react-icons/ti';
 import { FaUserPlus, FaUser, FaBusinessTime, FaBicycle } from 'react-icons/fa';
 import { GoSignIn, GoSignOut } from 'react-icons/go';

@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 
 // SASS
 import './sass/App.scss';
+import './App.css';
 
 //Components
 import Navbar from './components/UI/NavItems';

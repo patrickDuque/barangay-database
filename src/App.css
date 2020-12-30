@@ -1,0 +1,42 @@
+.ProfilePage {
+  background: url(./assets/images/bamboo.jpg) no-repeat !important;
+  background-size: cover;
+}
+
+.ProfilePage div img {
+  height: 96px;
+  width: 96px;
+}
+
+.ProfilePage div .ProfilePagePicture {
+  border-radius: 10px;
+  border: 1px solid black;
+  height: 192px;
+  width: 192px;
+}
+
+.ProfilePage div .RightThumbMark {
+  border: 1px solid black;
+  height: 96px;
+  width: 192px;
+}
+
+.ProfilePage div .ProfilePageContent {
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+h4 {
+  font-family: inherit;
+}
+
+span {
+  font-weight: bold;
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important; /*Chrome, Safari */
+    color-adjust: exact !important; /*Firefox*/
+  }
+}

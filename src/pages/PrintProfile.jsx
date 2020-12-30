@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
-import { useReactToPrint } from 'react-to-print';
-import { useSelector } from 'react-redux';
+import ReactToPrint, { PrintContextConsumer } from 'react-to-print';
+import { connect } from 'react-redux';
 
 import Button from '../components/UI/Button';
 import Profile from '../components/Profile';
@@ -9,39 +9,51 @@ import Input from '../components/UI/Input';
 
 import history from '../helpers/history';
 
-export default () => {
-  const profile = useSelector(state => state.profile.profiles);
-  const [ purpose, setPurpose ] = useState('');
-
-  const componentRef = useRef();
-  const handlePrint = useReactToPrint({
-    content : () => componentRef.current
-  });
-
-  return (
-    <div className='PrintPage' style={{ backgroundColor: profile ? 'white' : '#181c3a' }}>
-      <div className='uk-margin-top'>
-        <Input
-          isId
-          label='Purpose'
-          type='text'
-          id='purpose'
-          value={purpose}
-          onChange={e => setPurpose(e.target.value)}
-        />
+class PrintProfile extends React.Component {
+  state = {
+    purpose : ''
+  };
+  render() {
+    return (
+      <div className='PrintPage' style={{ backgroundColor: this.props.profile ? 'white' : '#181c3a' }}>
+        <div className='uk-margin-top'>
+          <Input
+            isId
+            label='Purpose'
+            type='text'
+            id='purpose'
+            value={this.state.purpose}
+            onChange={e =>
+              this.setState({
+                purpose : e.target.value
+              })}
+          />
+        </div>
+        {this.props.profile ? (
+          <Profile
+            ref={el => (this.componentRef = el)}
+            profile={this.props.profile.filter(p => p._id === history.location.pathname.split('/')[2])[0]}
+            purpose={this.state.purpose}
+          />
+        ) : (
+          <Spinner />
+        )}
+        <div className='uk-text-right'>
+          <ReactToPrint content={() => this.componentRef} print={async () => await HTMLIFrameElement.print()}>
+            <PrintContextConsumer>
+              {({ handlePrint }) => <Button onClick={handlePrint}>Print</Button>}
+            </PrintContextConsumer>
+          </ReactToPrint>
+        </div>
       </div>
-      {profile ? (
-        <Profile
-          ref={componentRef}
-          profile={profile.filter(p => p._id === history.location.pathname.split('/')[2])[0]}
-          purpose={purpose}
-        />
-      ) : (
-        <Spinner />
-      )}
-      <div className='uk-text-right'>
-        <Button onClick={handlePrint}>Print</Button>
-      </div>
-    </div>
-  );
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    profile : state.profile.profiles
+  };
 };
+
+export default connect(mapStateToProps, null)(PrintProfile);

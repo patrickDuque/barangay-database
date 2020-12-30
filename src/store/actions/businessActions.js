@@ -50,11 +50,13 @@ export const getBusinesses = () => async dispatch => {
 													DELETE ACTIONS
 ===============================================================*/
 export const deleteBusiness = id => async dispatch => {
+  dispatch({ type: actionTypes.DELETE_BUSINESS_START });
   try {
     const deletedProfile = await axios.delete(`/business/${id}`);
-    dispatch({ type: actionTypes.DELETE_BUSINESS, id });
+    dispatch({ type: actionTypes.DELETE_BUSINESS_SUCCESS, id });
     UIkit.notification({ message: deletedProfile.data.message });
   } catch (error) {
+    dispatch({ type: actionTypes.DELETE_BUSINESS_FAIL });
     UIkit.notification({ message: error.message });
   }
 };

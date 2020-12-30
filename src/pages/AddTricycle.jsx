@@ -24,13 +24,13 @@ export default () => {
   const [ address, setAddress ] = useState('');
   const [ contactNumber, setContactNumber ] = useState('');
   const [ brand, setBrand ] = useState('');
-  const [ model, setModel ] = useState('');
+  const [ model, setModel ] = useState('2020');
   const [ plateNumber, setPlateNumber ] = useState('');
   const [ motorNumber, setMotorNumber ] = useState('');
   const [ color, setColor ] = useState('');
-  const [ bodyNumber, setBodyNumber ] = useState('');
+  const [ bodyNumber, setBodyNumber ] = useState('00');
   const [ affiliation, setAffiliation ] = useState('');
-  const loading = useSelector(state => state.business.loading);
+  const loading = useSelector(state => state.tricycle.loading);
   const webcamRef = useRef(null);
 
   const capture = useCallback(
@@ -50,7 +50,7 @@ export default () => {
     setShowCamera(true);
   };
 
-  const submitBusinessHandler = () => {
+  const submitTricycleHandler = () => {
     try {
       fetch(imgSrc).then(res => res.blob()).then(img => {
         const file = new File([ img ], 'profile.jpeg', {
@@ -62,11 +62,11 @@ export default () => {
         form.append('address', address);
         form.append('contactNumber', contactNumber ? contactNumber : '');
         form.append('brand', brand ? brand : '');
-        form.append('model', model ? model : '');
+        form.append('model', model ? model : '2020');
         form.append('plateNumber', plateNumber ? plateNumber : '');
         form.append('motorNumber', motorNumber ? motorNumber : '');
         form.append('color', color ? color : '');
-        form.append('bodyNumber', bodyNumber ? bodyNumber : '');
+        form.append('bodyNumber', bodyNumber ? bodyNumber : '00');
         form.append('affiliation', affiliation ? affiliation : 'Others');
         dispatch(submitTricycle(form));
       });
@@ -99,11 +99,17 @@ export default () => {
                 onChange={e => setContactNumber(e.target.value)}
               />
               <Input type='text' id='brand' label='Brand' value={brand} onChange={e => setBrand(e.target.value)} />
-              <Input type='text' id='model' label='Model' value={model} onChange={e => setModel(e.target.value)} />
+              <Input
+                type='number'
+                id='model'
+                label='Year Model'
+                value={model}
+                onChange={e => setModel(e.target.value)}
+              />
             </div>
             <div>
               <Input
-                type='text'
+                type='number'
                 id='body-number'
                 label='Body Number'
                 value={bodyNumber}
@@ -129,16 +135,13 @@ export default () => {
                 label='Affiliation'
                 options={[
                   'Others',
-                  'Market',
-                  'Bakery',
+                  'Achievers’ TODA',
+                  'Pandayan TODA',
+                  'Topaz TODA',
                   'Barbershop',
-                  'Food Stall',
-                  'Salon',
-                  'Hardware',
-                  'Convenience Store',
-                  'Restaurant',
-                  'Eatery',
-                  'Coffeshop'
+                  'PSM TODA',
+                  'Tri-wheels TODA (St. Francis Phase II B & C Terminal)',
+                  'Tri-wheels TODA (Gladiola, St. Michael Homes Phase III)'
                 ]}
                 value={affiliation}
                 onChange={e => setAffiliation(e.target.value)}
@@ -147,12 +150,14 @@ export default () => {
           </div>
         </div>
         {imgSrc ? (
-          <div className='uk-margin-auto'>
-            <div className='AddProfileImage'>
-              <img className='uk-padding-remove' src={imgSrc} alt='dp' />
-            </div>
-            <div className='uk-text-center uk-margin-top'>
-              <Button onClick={submitBusinessHandler}>Submit</Button>
+          <div className='uk-flex'>
+            <div className='uk-margin-auto'>
+              <div className='AddProfileImage'>
+                <img className='uk-padding-remove' src={imgSrc} alt='dp' />
+              </div>
+              <div className='uk-text-center uk-margin-top'>
+                <Button onClick={submitTricycleHandler}>Submit</Button>
+              </div>
             </div>
           </div>
         ) : (

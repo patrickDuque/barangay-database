@@ -33,8 +33,15 @@ const reducer = (state = initialState, action) => {
       newState.error = action.error;
       newState.loading = false;
       break;
-    case actionTypes.DELETE_TRICYCLE:
+    case actionTypes.DELETE_TRICYCLE_SUCCESS:
       newState.tricycles = state.tricycles.filter(tricyle => tricyle._id !== action.id);
+      newState.loading = false;
+      break;
+    case actionTypes.DELETE_TRICYCLE_START:
+      newState.loading = true;
+      break;
+    case actionTypes.DELETE_TRICYCLE_FAIL:
+      newState.loading = false;
       break;
   }
   return newState;

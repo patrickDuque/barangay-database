@@ -33,8 +33,15 @@ const reducer = (state = initialState, action) => {
       newState.error = action.error;
       newState.loading = false;
       break;
-    case actionTypes.DELETE_BUSINESS:
+    case actionTypes.DELETE_BUSINESS_SUCCESS:
       newState.businesses = state.businesses.filter(business => business._id !== action.id);
+      newState.loading = false;
+      break;
+    case actionTypes.DELETE_BUSINESS_START:
+      newState.loading = true;
+      break;
+    case actionTypes.DELETE_BUSINESS_FAIL:
+      newState.loading = false;
       break;
   }
   return newState;

@@ -5,10 +5,7 @@
   "homepage": "./",
   "main": "public/electron.js",
   "build": {
-    "appId": "barangay.db.fe",
-    "win": {
-      "icon": "build/icon.png"
-    }
+    "appId": "barangay.db.fe"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -16,7 +13,6 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "cross-env": "^7.0.2",
-    "electron": "^9.2.0",
     "electron-is-dev": "^1.2.0",
     "form-data": "^3.0.0",
     "moment": "^2.27.0",
@@ -32,11 +28,13 @@
     "react-webcam": "^5.2.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "styled-components": "^5.2.1",
     "uikit": "^3.5.6"
   },
   "scripts": {
     "start": "react-scripts start",
     "test": "react-scripts test",
+    "react-build": "react-scripts build",
     "eject": "react-scripts eject",
     "electron-dev": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "electron-build": "electron-builder",
@@ -60,6 +58,7 @@
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
+    "electron": "^9.1.1",
     "electron-builder": "^22.8.0",
     "wait-on": "^5.2.0"
   }

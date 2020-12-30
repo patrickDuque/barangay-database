@@ -1,81 +1,124 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 
-import Logo from '../assets/images/logo.jfif';
-import MeycLogo from '../assets/images/meyc-logo.jfif';
+import styled from 'styled-components';
+
+const Background = styled.div`
+  background: url(https://barangaybackend.s3-ap-southeast-1.amazonaws.com/bamboo.jpg) no-repeat !important;
+  font-family: 'Baloo Tamma 2';
+`;
+
+const Picture = styled.img`
+  border-radius: 10px;
+  border: 1px solid black;
+  height: 150px;
+  width: 150px;
+`;
+
+const Logo = styled.img`
+  height: 90px;
+  width: 90px;
+`;
+
+const PageContainer = styled.div`
+  border: 1px solid black;
+  border-radius: 20px;
+`;
+
+const Span = styled.span`
+  font-weight: bold;
+  text-transform: capitalize;
+`;
+
+const Headline = styled.h4`font-size: 14px;`;
+
+const Paragraph = styled.p`font-size: 12px;`;
 
 export default class extends Component {
   render() {
     const date = moment();
     return (
-      <div className='BusinessPage uk-padding'>
-        <div className='uk-flex uk-flex-between uk-padding'>
-          <img src={MeycLogo} alt='brgy-logo' height='96px' />
+      <Background className='uk-padding'>
+        <div className='uk-flex uk-flex-between uk-padding-small'>
+          <Logo src='https://barangaybackend.s3-ap-southeast-1.amazonaws.com/meyc-logo.jpg' alt='brgy-logo' />
           <div className='uk-text-center'>
-            <h4 className='uk-margin-remove'>REPUBLIC OF THE PHILIPPINES</h4>
-            <h4 className='uk-margin-remove'>PROVINCE OF BULACAN</h4>
-            <h4 className='uk-margin-remove'>CITY OF MEYCAUAYAN BULACAN</h4>
-            <h4 className='uk-margin-remove'>BARANGAY PANDAYAN</h4>
+            <Headline className='uk-margin-remove'>REPUBLIC OF THE PHILIPPINES</Headline>
+            <Headline className='uk-margin-remove'>PROVINCE OF BULACAN</Headline>
+            <Headline className='uk-margin-remove'>CITY OF MEYCAUAYAN BULACAN</Headline>
+            <Headline className='uk-margin-remove'>BARANGAY PANDAYAN</Headline>
           </div>
-          <img src={Logo} alt='brgy-logo' height='96px' />
+          <Logo src='https://barangaybackend.s3-ap-southeast-1.amazonaws.com/logo.jpg' alt='brgy-logo' />
         </div>
-        <h3 className='uk-text-center uk-margin-remove-top uk-margin-medium-bottom'>OFFICE OF THE BARANGAY CHAIRMAN</h3>
-        <div className='uk-flex uk-flex-between'>
-          <div className='BusinessPageContent uk-padding'>
-            <h4 className='uk-margin-remove'>TO WHOM IT MAY CONCERN:</h4>
-            <p className='uk-margin-remove'>This is to certify that the establishment below</p>
-            <p className='uk-margin-remove'>has requested for a Barangay Business Clearance</p>
-            <p className='uk-margin-remove'>from this office with details listed below:</p>
-            <div className='uk-margin-top'>
-              <p className='uk-margin-remove'>
-                NAME: <span>{this.props.business.name}</span>
-              </p>
-              <p className='uk-margin-remove'>
-                Address: <span>{this.props.business.address}</span>
-              </p>
-              <p className='uk-margin-remove'>
-                Date of birth: <span>{this.props.business.birthday}</span>
-              </p>
-              <p className='uk-margin-remove'>
-                Place of birth: <span>{this.props.business.birthplace}</span>
-              </p>
-              <p className='uk-margin-remove'>Purpose:</p>
-              <p className='uk-margin-remove'>
-                Remarks: <span>No Derogatory Records as of Date</span>
-              </p>
-              <p className='uk-margin-remove'>CTC No.:</p>
-              <p className='uk-margin-remove'>
-                Place of Issue: <span>Barangay Pandayan, Meycauayan, Bulacan</span>
-              </p>
-              <p className='uk-margin-remove'>
-                Date of Issue: <span>{date.format('MMMM D YYYY')}</span>
-              </p>
-            </div>
-          </div>
-          <div>
-            <img
-              className='BusinessPagePicture uk-margin-bottom'
-              src={`${this.props.business.picture}`}
-              alt='display pic'
-            />
-            <div className='RightThumbMark uk-margin-remove' />
-            <p className='uk-margin-remove uk-text-center'>Right Thumb Mark</p>
-          </div>
+        <Headline className='uk-text-center uk-margin-remove-top uk-margin-medium-bottom'>
+          <strong>OFFICE OF THE BARANGAY CHAIRMAN</strong>
+        </Headline>
+        <div className='uk-flex uk-flex-right'>
+          <Picture className='uk-margin-bottom' src={`${this.props.business.picture}`} alt='display pic' />
         </div>
+        <Headline className='uk-margin-remove'>
+          <strong>TO WHOM IT MAY CONCERN:</strong>
+        </Headline>
+        <Headline className='uk-margin-remove-top'>
+          This is to certify that the establishment below has requested for a Barangay Business Clearance from this
+          office with details listed below:
+        </Headline>
+        <div>
+          <PageContainer className='uk-padding-small'>
+            <Paragraph className='uk-margin-remove'>
+              Establishment: <Span>{this.props.business.name}</Span>
+            </Paragraph>
+            <Paragraph className='uk-margin-remove'>
+              Address: <Span>{this.props.business.address}</Span>
+            </Paragraph>
+            <Paragraph className='uk-margin-remove'>
+              Nature of Business: <Span>{this.props.business.nature}</Span>
+            </Paragraph>
+            <Paragraph className='uk-margin-remove'>
+              Existence: <Span>{this.props.business.existence}</Span>
+            </Paragraph>
+            <Paragraph className='uk-margin-remove'>
+              Owner: <Span>{this.props.business.owner}</Span>
+            </Paragraph>
+            <Paragraph className='uk-margin-remove'>
+              Requesting Person: <Span>{this.props.business.requestingPerson}</Span>
+            </Paragraph>
+            <Paragraph className='uk-margin-remove'>
+              Purpose: <Span>{this.props.purpose}</Span>
+            </Paragraph>
+            <Paragraph className='uk-margin-remove'>
+              Amount: <Span>₱{this.props.amount}</Span>
+            </Paragraph>
+            <Paragraph className='uk-margin-remove'>
+              Date of Issue: <Span>{date.format('MMMM D YYYY')}</Span>
+            </Paragraph>
+          </PageContainer>
+        </div>
+        <Paragraph>
+          This clearance is done in accordance with Barangay Ordinance no. 92-3 dated March 15, 1994. And is issued to{' '}
+          <Span>{this.props.business.requestingPerson}</Span> whose picture appears herein.
+        </Paragraph>
         <div className='uk-flex uk-flex-between'>
           <ul className='uk-margin-top'>
             <li>
-              Valid for three (3) months. Expiration Date:{' '}
-              <strong>{date.add(3, 'months').format('MMMM D YYYY')}</strong>
+              <Paragraph className='uk-margin-remove'>
+                Valid for three (3) months. Expiration Date:{' '}
+                <strong>{date.add(3, 'months').format('MMMM D YYYY')}</strong>
+              </Paragraph>
             </li>
-            <li>Not valid without the official Seal and Authorized Signature</li>
+            <li>
+              <Paragraph className='uk-margin-remove'>
+                Not valid without the official Seal and Authorized Signature
+              </Paragraph>
+            </li>
           </ul>
           <div className='uk-margin-top uk-text-center'>
-            <h4 className='uk-margin-remove'>Judge Rolando L. Bulan(Ret.)</h4>
-            <h5 className='uk-margin-remove'>Punong Barangay</h5>
+            <Headline className='uk-margin-remove'>
+              <strong>Judge Rolando L. Bulan(Ret.)</strong>
+            </Headline>
+            <Headline className='uk-margin-remove'>Punong Barangay</Headline>
           </div>
         </div>
-      </div>
+      </Background>
     );
   }
 }
