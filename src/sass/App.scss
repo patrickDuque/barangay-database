@@ -14,19 +14,17 @@
 @import './AddAddress.scss';
 @import './AddOtherDetails.scss';
 @import './Spinner.scss';
-@import './Profile.scss';
 @import './Print.scss';
 @import './Businesses.scss';
 @import './AddBusiness.scss';
 @import './Id.scss';
-@import './Business.scss';
 @import './AddTricycle.scss';
 
 .App {
-  box-sizing: border-box;
-  height: 100vh;
+	box-sizing: border-box;
+	height: 100vh;
 
-  div {
-    box-sizing: border-box;
-  }
+	div {
+		box-sizing: border-box;
+	}
 }
