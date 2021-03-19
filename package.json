@@ -1,11 +1,16 @@
 {
   "name": "barangay-db",
+	"author": {"name": "Patrick Jason Duque"},
   "version": "0.1.0",
   "private": true,
   "homepage": "./",
   "main": "public/electron.js",
   "build": {
-    "appId": "barangay.db.fe"
+    "appId": "barangay.db.fe",
+		"win": {
+			"icon": "./public/icon.png" 
+		},
+		"productName": "barangay-database"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
