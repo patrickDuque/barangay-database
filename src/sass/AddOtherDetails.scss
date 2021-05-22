@@ -1,41 +1,41 @@
 .AddOtherDetailsPage {
-  border-radius: 30px;
-  background-color: #181c3a;
-  height: 88.7vh;
-  border: 1px solid #eee;
-  box-sizing: border-box;
+	border-radius: 30px;
+	background-color: #181c3a;
+	height: 88.7vh;
+	border: 1px solid #eee;
+	box-sizing: border-box;
 
-  .AddProfileImage {
-    width: 300px;
-    height: 200px;
-    border: 2px solid white;
-    border-radius: 30px;
-    box-sizing: border-box;
+	.AddProfileImage {
+		width: 300px;
+		height: 180px;
+		border: 2px solid white;
+		border-radius: 30px;
+		box-sizing: border-box;
 
-    img {
-      width: 300px;
-      height: 200px;
-      border: 2px solid white;
-      border-radius: 30px;
-      box-sizing: border-box;
-    }
-  }
+		img {
+			width: 300px;
+			height: 180px;
+			border: 2px solid white;
+			border-radius: 30px;
+			box-sizing: border-box;
+		}
+	}
 
-  .ImageCapture {
-    border-radius: 20px;
-    background-color: white;
-    color: #181c3a;
-    border: none;
-    padding: 12px;
-    cursor: pointer;
-    font-family: inherit;
-    outline: none;
-    transition: all .3s ease-out;
+	.ImageCapture {
+		border-radius: 20px;
+		background-color: white;
+		color: #181c3a;
+		border: none;
+		padding: 12px;
+		cursor: pointer;
+		font-family: inherit;
+		outline: none;
+		transition: all 0.3s ease-out;
 
-    &:hover {
-      background-color: #181c3a;
-      color: white;
-      border: 1px solid white;
-    }
-  }
+		&:hover {
+			background-color: #181c3a;
+			color: white;
+			border: 1px solid white;
+		}
+	}
 }
